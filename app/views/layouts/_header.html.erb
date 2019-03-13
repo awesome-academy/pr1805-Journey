@@ -1,0 +1,44 @@
+<div class="main-top" id="home">
+  <div class="headder-top">
+    <nav>
+      <div id="logo">
+        <h1>
+          <a href="index.html">SUN* Journey</a>
+        </h1>
+      </div>
+      <label for="drop" class="toggle">Menu</label>
+      <input type="checkbox" id="drop">
+      <ul class="menu mt-2">
+        <li class="active">
+          <%= link_to "Home", index_path %>
+        </li>
+        <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
+          <%= link_to "About", about_path %>
+        </li>
+        <li>
+          <%= link_to "Sign Up", signup_path %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="main-banner">
+    <div class="container-fluid">
+      <div class="style-banner ">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-13">
+            <div class="banner-right-txt">
+              <h4>Fun and Adventure</h4>
+              <h4>With Joyful Trip</h4>
+              <div class="two-demo-button mt-lg-4 mt-md-3 mt-3">
+                <p> Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit amet</p>
+              </div>
+              <div class="view-buttn mt-md-4 mt-sm-4 mt-3">
+                <%= link_to "Sign In", signin_path %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
