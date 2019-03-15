@@ -1,8 +1,13 @@
 <div class="container py-lg-5 py-md-4 py-sm-4 py-3">
   <div class="row">
     <div class="col-lg-12 col-md-4 col-sm-12 contact-form-txt">
+<<<<<<< 07f438be3452f46e97a61a4cffeb49f146f07074
       <%= form_for @user, url: signup_path do |f| %>
         <%= render "shared/error_messages" %>
+=======
+      <%= form_for(@user, url: signup_path) do |f| %>
+        <%= render 'shared/error_messages' %>
+>>>>>>> sign_up
         <div class="form-group contact-forms">
           <%= f.label :name %>
           <%= f.text_field :name, class: "form-control" %>
@@ -19,8 +24,13 @@
           <%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, class: "form-control" %>
         </div>
+<<<<<<< 07f438be3452f46e97a61a4cffeb49f146f07074
           <%= f.submit "Create my account", class: "btn btn-primary" %>
       <% end %>
+=======
+        <%= f.submit "Create my account", class: "btn btn-primary" %>
+        <% end %>
+>>>>>>> sign_up
     </div>
   </div>
 </div>
