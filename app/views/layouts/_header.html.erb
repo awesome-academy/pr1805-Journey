@@ -3,11 +3,9 @@
     <nav>
       <div id="logo">
         <h1>
-          <a href="index.html">SUN* Journey</a>
+         <%= link_to "SUN* Journey", root_url %>
         </h1>
       </div>
-      <label for="drop" class="toggle">Menu</label>
-      <input type="checkbox" id="drop">
       <ul class="menu mt-2">
         <li class="active">
           <%= link_to "Home", index_path %>
@@ -15,9 +13,25 @@
         <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
           <%= link_to "About", about_path %>
         </li>
-        <li>
-          <%= link_to "Sign Up", signup_path %>
-        </li>
+        <% if logged_in? %>
+          <li class="dropdown">
+            <a href="#" data-toggle="dropdown">
+              <%= "#{current_user.name}"%><b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", current_user %></li>
+              <li><%= link_to "Settings", "#" %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Log out", logout_path, method: :delete %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Sign Up", signup_path %>
+          </li>
+        <% end %>
       </ul>
     </nav>
   </div>
@@ -33,7 +47,11 @@
                 <p> Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit amet</p>
               </div>
               <div class="view-buttn mt-md-4 mt-sm-4 mt-3">
-                <%= link_to "Sign In","#" %>
+                <% if logged_in? %>
+                  <%= link_to "Read More", "#" %>
+                <% else  %>
+                  <%= link_to "Sign In",signin_path %>
+                <% end %>
               </div>
             </div>
           </div>
