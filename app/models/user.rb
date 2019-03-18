@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  before_save {self.email = email.downcase}
   has_many :posts, dependent: :destroy
   has_many :active_relations, class_name: Relation.name,
   foreign_key: :follower_id, dependent: :destroy
@@ -22,6 +23,10 @@ class User < ApplicationRecord
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
       BCrypt::Engine.cost
       BCrypt::Password.create string, cost: cost
+    end
+
+    def new_token
+      SecureRandom.urlsafe_base64
     end
   end
 end
