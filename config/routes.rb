@@ -8,11 +8,13 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
+
+  resources  :posts, except: :show
+
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"
   get "/signin" , to: "sessions#new"
   post "/signin" , to: "sessions#create"
-  resources :users
 
   delete "/log_out", to: "sessions#destroy"
   resources :accounts, only: [:edit]

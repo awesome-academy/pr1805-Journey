@@ -11,10 +11,15 @@
 // about supported directives.
 //
 //= require jquery3
+//= require jquery
+//= require jquery_ujs
+//= require scroll-up
 //= require popper
+//= require magnific-popup
 //= require bootstrap
 //= require rails-ujs
 //= require turbolinks
+//= require_tree ./lib
 //= require_tree .
 
 $(document).on('turbolinks:load', function(){
