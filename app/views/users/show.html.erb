@@ -1,2 +1,50 @@
-<h1>This is Profile !!!</h1>
-<h3><%= @user.name %></h3>
+<div class="row">
+  <div class="offset-md-2 col-lg-8 offset-lg-3 col-xl-6">
+    <div class="card bg-light card-body mb-3 profile">
+      <div class="col-md-12">
+        <div class="col-12 col-md-8 float-left">
+          <h2><%= @user.name %></h2>
+          <%= image_tag @user.picture.url if @user.picture? %>
+          <p><strong>Bio:</strong><%= @user.bio  %></p>
+          <p><strong>Contact: (+84) </strong><%= @user.phone %></p>
+        </div>
+        <div class="col-12 col-md-4 float-left text-center">
+          <figure>
+            <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="rounded-circle img-fluid">
+          </figure>
+        </div>
+      </div>
+      <div class="col-12 divider text-center">
+        <div class="col-12 col-md-4 float-left emphasis">
+          <h2><strong> 20,7K </strong></h2>
+          <p><small>Followers</small>
+          </p>
+          <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow</button>
+        </div>
+        <div class="col-12 col-md-4 float-left emphasis">
+          <h2><strong>245</strong></h2>
+          <p><small>Following</small>
+          </p>
+          <button class="btn btn-info btn-block"><span class="fa fa-user"></span><%= link_to "Edit Profile", edit_user_path  %></button>
+        </div>
+        <div class="col-12 col-md-4 float-left emphasis">
+          <h2><strong>43</strong></h2>
+          <p><small>Snippets</small></p>
+          <div class="btn-group dropup btn-block">
+            <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu text-left" role="menu">
+              <li class="divider dropdown-item"></li>
+              <li class="dropdown-item">Report this user for spam</li>
+              <li class="divider dropdown-item"></li>
+              <li class="dropdown-item"><a href="#" class="btn disabled" role="button"> Unfollow </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

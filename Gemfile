@@ -3,6 +3,8 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+gem "letter_opener", :group => :development
+gem "figaro"
 gem "mini_racer"
 gem "bcrypt", "3.1.12"
 gem "rails", "~> 5.1.6"
@@ -16,7 +18,10 @@ gem "jbuilder", "~> 2.5"
 gem "bootstrap", "~> 4.0.0"
 gem "jquery-rails"
 gem "font-awesome-rails" , "~> 4.7.0"
-
+gem "carrierwave", "1.2.2"
+gem "mini_magick", "4.7.0"
+gem "fog", "1.42"
+gem "config"
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "capybara", "~> 2.13"

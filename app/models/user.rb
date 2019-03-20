@@ -22,6 +22,11 @@ class User < ApplicationRecord
 
   has_secure_password
   validates :password ,length: {minimum: 8 , maximum: 20}, allow_nil: true
+  validates :phone, uniqueness: true ,length: {minimum:8}, allow_nil: true
+  validates :bio , length: {maximum: 150}, allow_nil: :true
+  mount_uploader :picture, AvatarUploader
+  validate :avatar_size
+
   class << self
     def digest string
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -62,5 +67,11 @@ class User < ApplicationRecord
   def create_activation_digest
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)
+  end
+
+  def avatar_size
+    if (picture.size) > Settings.user.avatar_size.megabyte
+      errors.add(:picture, "should be less than 5MB")
+    end
   end
 end

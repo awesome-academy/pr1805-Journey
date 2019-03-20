@@ -25,5 +25,4 @@ class SessionsController < ApplicationController
     flash[:info] = "See Yaaa <3"
     redirect_to root_url
   end
-
 end
