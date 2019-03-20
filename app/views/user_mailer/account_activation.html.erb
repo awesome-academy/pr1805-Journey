@@ -1,0 +1,7 @@
+<h1>Sun* Journey</h1>
+<p>Hola <%= @user.name %></p>
+<p>
+  Welcome to the Sun* !
+  Click on the link below to enjoy with us:
+</p>
+<%= link_to "Click Me!", edit_account_url(@user.activation_token,  email: @user.email) %>

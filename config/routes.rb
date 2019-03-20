@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :users
 
   delete "/log_out", to: "sessions#destroy"
+  resources :accounts, only: [:edit]
 end
