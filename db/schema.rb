@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190319150147) do
+ActiveRecord::Schema.define(version: 20190322055959) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
@@ -87,5 +87,8 @@ ActiveRecord::Schema.define(version: 20190319150147) do
     t.string "activation_digest"
     t.boolean "activated"
     t.datetime "activated_at"
+    t.string "picture"
+    t.string "bio"
   end
+
 end
