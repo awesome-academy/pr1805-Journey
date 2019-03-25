@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   get "/index", to: "homes#index"
   get "/about", to: "homes#about"
 
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"
   get "/signin" , to: "sessions#new"
@@ -11,4 +16,5 @@ Rails.application.routes.draw do
 
   delete "/log_out", to: "sessions#destroy"
   resources :accounts, only: [:edit]
+  resources :relations, only: [:create, :destroy]
 end
