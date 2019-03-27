@@ -1,8 +1,10 @@
 class UsersController <  ApplicationController
-  before_action :correct_user , only: [:show ,:edit, :update]
+  before_action :authenticate, except: [:new, :create]
+  before_action :load_user, except: [:index, :new, :create]
+  before_action :correct_user, only: [:edit, :update]
 
   def index
-    @user = User.scope(activated: true)
+    @users = User.activated
   end
 
   def new
@@ -21,6 +23,7 @@ class UsersController <  ApplicationController
   end
 
   def show
+    @unfollow = current_user.active_relations.find_by(followed_id: @user.id)
     redirect_to root_url if !@user.activated?
   end
 
@@ -35,18 +38,37 @@ class UsersController <  ApplicationController
     end
   end
 
+  def following
+    @users = @user.following
+    render :show_follow
+  end
+
+  def followers
+    @users = @user.followers
+    render :show_follow
+  end
+
+
   private
+
+  def load_user
+    @user = User.find_by id: params[:id]
+  end
 
   def user_params
     params.require(:user).permit :name, :email, :password,
      :password_confirmation , :bio , :phone ,:picture
   end
 
+  def authenticate
+    return if logged_in?
+    flash[:danger] = "You shoud log in first to do this"
+    redirect_to root_url
+  end
+
   def correct_user
-    @user = User.find_by params[:id]
-    if current_user =! @user
-      flash[:warning] = "Oops! Not Permissions!"
-      redirect_to user_path(current_user)
-    end
+    return if current_user == @user
+    flash[:warning] = "Oops! Not Permissions!"
+    redirect_to current_user
   end
 end

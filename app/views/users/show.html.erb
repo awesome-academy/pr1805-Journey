@@ -6,6 +6,7 @@
           <h2><%= @user.name %></h2>
           <%= image_tag @user.picture.url if @user.picture? %>
           <p><strong>Bio:</strong><%= @user.bio  %></p>
+          <p><strong>Email:</strong><%= @user.email %></p>
           <p><strong>Contact: (+84) </strong><%= @user.phone %></p>
         </div>
         <div class="col-12 col-md-4 float-left text-center">
@@ -16,20 +17,20 @@
       </div>
       <div class="col-12 divider text-center">
         <div class="col-12 col-md-4 float-left emphasis">
-          <h2><strong> 20,7K </strong></h2>
-          <p><small>Followers</small>
-          </p>
-          <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow</button>
+          <h2><strong id="followers"><%= @user.followers.size %></strong></h2>
+          <p><small><%= link_to "Followers" ,followers_user_path %></small></p>
+          <%= render "follow_form" %>
         </div>
         <div class="col-12 col-md-4 float-left emphasis">
-          <h2><strong>245</strong></h2>
-          <p><small>Following</small>
-          </p>
+          <h2><strong id="followers"><%= @user.following.size %></strong></h2>
+          <p><small><%= link_to "Following" ,following_user_path %></small></p>
+          <% if current_user == @user %>
           <button class="btn btn-info btn-block"><span class="fa fa-user"></span><%= link_to "Edit Profile", edit_user_path  %></button>
+          <% end %>
         </div>
         <div class="col-12 col-md-4 float-left emphasis">
-          <h2><strong>43</strong></h2>
-          <p><small>Snippets</small></p>
+          <h2><strong><%= @user.posts.size %></strong></h2>
+          <p><small>Posts</small></p>
           <div class="btn-group dropup btn-block">
             <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options</button>
             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span>
@@ -39,8 +40,6 @@
               <li class="divider dropdown-item"></li>
               <li class="dropdown-item">Report this user for spam</li>
               <li class="divider dropdown-item"></li>
-              <li class="dropdown-item"><a href="#" class="btn disabled" role="button"> Unfollow </a>
-              </li>
             </ul>
           </div>
         </div>

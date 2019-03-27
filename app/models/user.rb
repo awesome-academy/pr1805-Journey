@@ -1,8 +1,9 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token
 
-  before_save {self.email = email.downcase}
+  before_save { self.email = email.downcase }
   before_create :create_activation_digest
+  scope :activated, -> { where activated: true }
 
   has_many :posts, dependent: :destroy
   has_many :active_relations, class_name: Relation.name,
@@ -60,6 +61,19 @@ class User < ApplicationRecord
 
   def forget
     update_attribute :remember_digest, nil
+  end
+
+  def follow other_user
+    # following << other_user
+    active_relations.create(followed_id: other_user.id)
+  end
+
+  def unfollow other_user
+    following.delete other_user
+  end
+
+  def following? other_user
+    following.include? other_user
   end
 
   private
