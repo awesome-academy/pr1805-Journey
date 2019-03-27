@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :load_post, :correct_post, only: [:edit,:show, :update, :destroy]
+  before_action :load_post
+  before_action :correct_post, only: [:edit, :update, :destroy]
 
   def index; end
   def show;  end
@@ -50,10 +51,9 @@ class PostsController < ApplicationController
 end
 
   def correct_post
-    if current_user? @post.user
-       flash[:warning] = "Ban khong co quyen chinh sua hoac xoa bai viet nay! "
-       redirect_to root_path
-    end
+    return if current_user? @post.user
+    flash[:warning] = "Ban khong co quyen chinh sua hoac xoa bai viet nay! "
+    redirect_to root_path
   end
 
 end

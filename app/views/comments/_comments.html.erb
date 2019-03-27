@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-12">
+      <div class="col-12 col-md-8 ">
+        <% @post.comments.each do |comment| %>
+          <ul>
+             <strong><%= link_to "#{comment.user.name}", comment.user %></strong>
+            <li>
+              <p id="<%= comment.id %>" style="margin-top: 10px;">
+                <%= comment.content %></p>
+            </li>
+          </ul>
+          <% if current_user? comment.user  %>
+           <p><%= link_to "Edit", edit_post_comment_path(@post,
+                comment) %> /
+              <%= link_to "Delete", post_comment_path(@post,
+                comment), method: :delete,
+                data: { confirm: "Are you sure?"} %>
+            </p>
+          <% end %>
+          <p><small>Commented <%= time_ago_in_words(comment.created_at) %> ago</small></p>
+        <% end %>
+      </div>
+  </div>
+</div>
+
