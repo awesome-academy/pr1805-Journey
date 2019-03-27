@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   delete "/log_out", to: "sessions#destroy"
   resources :accounts, only: [:edit]
   resources :relations, only: [:create, :destroy]
+  resources :password_resets, except: [:index, :destroy]
 end
