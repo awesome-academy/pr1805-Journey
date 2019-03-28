@@ -1,0 +1,18 @@
+<h1>Place: <%= @place.name %></h1>
+<section class="articles-area section-padding-0-100">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        <div class="mt-100">
+          <div class="view-buttn mt-md-4 mt-sm-4 mt-3">
+            <%= link_to "Create Post", new_post_path, class: "btn" %>
+          </div>
+          <br><br>
+          <%= render @posts %>
+          <%= will_paginate @posts %>
+        </div>
+      </div>
+      <%= render "shared/place_is_max_post"%>
+    </div>
+  </div>
+</section>

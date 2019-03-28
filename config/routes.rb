@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources  :posts, except: :show
+  resources :places, only: [:index, :show]
 
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"
