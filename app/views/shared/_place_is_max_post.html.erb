@@ -53,14 +53,14 @@
       </div>
     </div>
     <div class="single-widget-area post-widget">
-      <h4 class="widget-title">Top Places </h4>
+      <h4 class="widget-title"><%= link_to "Top Places", places_path %></h4>
       <% @places.each do |place| %>
         <div class="single-post-area d-flex">
           <div class="blog-thumbnail">
             <%= image_tag "c1.jpg" %>
           </div>
           <div class="blog-content">
-            <%= link_to  place.name , "#" %>
+            <%= link_to  place.name , place_path(place) %>
           </div>
         </div>
       <% end %>

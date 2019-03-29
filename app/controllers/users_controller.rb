@@ -25,6 +25,8 @@ class UsersController <  ApplicationController
   def show
     @unfollow = current_user.active_relations.find_by(followed_id: @user.id)
     redirect_to root_url if !@user.activated?
+    @posts = @user.posts.newest.paginate page: params[:page], per_page: 5
+    places_max_posts
   end
 
   def edit; end
