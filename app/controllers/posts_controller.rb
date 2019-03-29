@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
-  before_action :load_post, :correct_post, only: [:edit, :update, :destroy]
+  before_action :load_post, :correct_post, only: [:edit,:show, :update, :destroy]
 
   def index; end
+  def show;  end
 
   def new
     @post = Post.new
@@ -22,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @posts= Post.all.order_post.paginate page: params[:page], per_page: 5
+    @posts= Post.newest.paginate page: params[:page], per_page: 5
     places_max_posts
     @place_options = Place.pluck(:name, :id)
   end

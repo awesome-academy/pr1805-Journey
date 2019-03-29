@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   belongs_to :place
   scope :newest , -> {order  created_at: :desc}
   validates :title, presence: true, length: {maximum: 100}
-  validates :content, length: {maximum: 50}, presence: true
+  validates :content, presence: true
   validates :place,  presence: true
   before_save {self.title = title.upcase}
 end
