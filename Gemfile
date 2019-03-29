@@ -28,6 +28,7 @@ gem "magnific-popup-rails", "~> 1.1.0"
 gem "sticky-rails"
 gem "scroll-up", "~> 0.0.5"
 gem "will_paginate"
+gem "tinymce-rails"
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "capybara", "~> 2.13"

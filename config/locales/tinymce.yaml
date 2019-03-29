@@ -1,0 +1,9 @@
+default:
+  toolbar:
+    - styleselect | media | bold italic |  undo redo | uploadimage | link , alignleft aligncenter alignright bullist numlist | outdent indent
+  plugins:
+    - link
+    - media
+    - lists
+    - uploadimage
+  uploadimage: false

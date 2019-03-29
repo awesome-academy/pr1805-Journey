@@ -18,6 +18,7 @@
 //= require magnific-popup
 //= require bootstrap
 //= require rails-ujs
+//= require tinymce
 //= require turbolinks
 //= require_tree ./lib
 //= require_tree .
@@ -28,5 +29,8 @@ $(document).on('turbolinks:load', function(){
     if (size_in_megabytes > 5) {
       alert('Maximum file size is 5MB. Please choose a smaller file.');
     }
+  });
+  tinyMCE.init({
+    selector: "textarea.tinymce"
   });
 })
