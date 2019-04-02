@@ -1,0 +1,12 @@
+<div id="comment_form">
+  <% if logged_in? %>
+    <%= form_for [post, post.comments.build] do |f| %>
+      <%= f.text_area :content, placeholder: "Comment...",
+        class: "form_control" %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.submit "Comment", class: "btn btn-primary" %>
+      <%= f.submit "Cancel", class: "btn btn-primary",
+        type: :reset %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,9 @@
+<strong>Edit Comment</strong>
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.text_area :content ,class: "form_control" %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit "Update", class: "btn btn-primary" %>
+  <%= f.submit "Cancel", class: "btn btn-primary",
+    type: :reset %>
+<% end %>
+<%= link_to "Back", post_path(@post) %>
