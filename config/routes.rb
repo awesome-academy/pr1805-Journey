@@ -11,10 +11,11 @@ Rails.application.routes.draw do
   end
 
   resources :places, only: [:index, :show]
+
   resources  :posts do
     resources :comments, except: [:index]
+    resources :reports, only: [:new, :create]
   end
-
 
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"

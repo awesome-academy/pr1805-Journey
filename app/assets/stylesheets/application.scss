@@ -11,12 +11,13 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree ./lib
- *= require_self
+ *= require_tree .
  *= require scroll-up
  *= require font-awesome
  *= require magnific-popup
  *= require  owl.carousel
  *= require animate
  *= require_directory .
+ *= require_self
  */
  @import 'bootstrap';
