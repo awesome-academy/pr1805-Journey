@@ -17,6 +17,6 @@
  *= require magnific-popup
  *= require  owl.carousel
  *= require animate
- *= require_directory .
+ *= require_tree .
  */
  @import 'bootstrap';

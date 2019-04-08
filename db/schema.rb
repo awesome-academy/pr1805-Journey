@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190402162318) do
+ActiveRecord::Schema.define(version: 20190328050711) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
@@ -26,12 +26,6 @@ ActiveRecord::Schema.define(version: 20190402162318) do
     t.integer "object_id"
     t.string "type"
     t.string "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "event"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -76,8 +70,6 @@ ActiveRecord::Schema.define(version: 20190402162318) do
     t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "content", limit: 2000
-    t.string "report_type", limit: 45
     t.index ["post_id"], name: "index_reports_on_post_id"
     t.index ["user_id"], name: "index_reports_on_user_id"
   end

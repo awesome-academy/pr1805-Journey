@@ -21,7 +21,7 @@
 //= require tinymce
 //= require turbolinks
 //= require_tree ./lib
-//= require_directory .
+//= require_tree .
 
 $(document).on('turbolinks:load', function(){
   $('#user_picture').bind('change', function() {
