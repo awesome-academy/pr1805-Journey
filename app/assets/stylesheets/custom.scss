@@ -39,7 +39,7 @@ span.tags {
   background-color: #black;
   box-shadow: black;
   -webkit-box-shadow: black;
-  width: 250px;
+  width: 300px;
   margin-left: -125px;
   left: 50%;
 }
@@ -92,3 +92,21 @@ span.tags {
 .pagination em:hover:not(.active) {background-color: #ddd;}
 .pagination span:hover:not(.active) {background-color: #ddd;}
 
+.overflow{
+  height: 400px;
+  weight: 600px;
+  overflow: hidden;
+}
+
+/* THE POPULAR RED NOTIFICATIONS COUNTER. */
+#noti_Counter {
+    display:block;
+    position:absolute;
+    background:#E1141E;
+    color:#FFF;
+    font-size:12px;
+    font-weight:normal;
+    padding:1px 3px;
+    margin: 1px 0px 30px 50px;
+    border-radius:1px;
+}

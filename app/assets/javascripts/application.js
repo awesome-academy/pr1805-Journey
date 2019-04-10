@@ -1,4 +1,3 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, or any plugin's
@@ -11,8 +10,9 @@
 // about supported directives.
 //
 //= require jquery3
+//= require_tree ./lib
 //= require jquery
-//= require jquery_ujs
+//= require_tree .
 //= require scroll-up
 //= require popper
 //= require magnific-popup
@@ -22,7 +22,6 @@
 //= require turbolinks
 //= require_tree ./lib
 //= require_directory .
-
 $(document).on('turbolinks:load', function(){
   $('#user_picture').bind('change', function() {
     var size_in_megabytes = this.files[0].size/1024/1024;

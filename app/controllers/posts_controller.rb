@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  before_action :load_post
+  before_action :load_post, except: [:index, :new]
   before_action :correct_post, only: [:edit, :update, :destroy]
+  before_action :new_notifications, except: [:update, :create, :destroy]
 
   def index; end
   def show;  end
@@ -48,10 +49,10 @@ class PostsController < ApplicationController
 
   def load_post
    @post = Post.find_by id: params[:id]
-end
+  end
 
   def correct_post
-    return if current_user? @post.user
+    return if current_user == @post.user
     flash[:warning] = "Ban khong co quyen chinh sua hoac xoa bai viet nay! "
     redirect_to root_path
   end

@@ -1,6 +1,7 @@
 class UsersController <  ApplicationController
   before_action :authenticate, except: [:new, :create]
   before_action :load_user, except: [:index, :new, :create]
+  before_action :new_notifications, only: [:index, :show, :edit]
   before_action :correct_user, only: [:edit, :update]
 
   def index
@@ -24,8 +25,8 @@ class UsersController <  ApplicationController
 
   def show
     @unfollow = current_user.active_relations.find_by(followed_id: @user.id)
-    redirect_to root_url if !@user.activated?
     @posts = @user.posts.newest.paginate page: params[:page], per_page: 5
+    redirect_to root_url if !@user.activated?
     places_max_posts
   end
 

@@ -13,6 +13,22 @@
         <li class="mx-lg-3 mx-md-2 my-md-0 my-1">
           <%= link_to "About", about_path %>
         </li>
+        <% if logged_in? %>
+          <li class="dropdown" id = "noti_Button">
+            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" >
+              <em class="fa fa-bell" ></em>
+              <span class="label label-danger" id = "noti_Counter" >
+                <%= @new_notifications.count %>
+              </span>
+            </a>
+            <ul class="dropdown-menu " >
+              <li id = "notifications">
+                <%= render @new_notifications %>
+              </li>
+              <li class="divider"></li>
+            </ul>
+          </li>
+        <% end %>
         <li>
           <div class="search-login-area d-flex align-items-center">
             <div class="top-search-area">

@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :rates
   has_many :comments
   has_many :reports
+  has_many :notifications, class_name: Notification.name, foreign_key: :send_to_id, dependent: :destroy
 
   validates :name , presence: true , length: {minimum: 5}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
