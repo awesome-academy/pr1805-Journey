@@ -9,9 +9,8 @@ module Admin::SessionsHelper
   end
 
   def current_admin
-    if user_id = session[:admin_id]
-      @current_admin ||= User.find_by id: user_id
-      log_in @current_admin
+    if session[:admin_id]
+      @current_admin = User.find_by id: session[:admin_id]
     end
   end
 
@@ -37,4 +36,5 @@ module Admin::SessionsHelper
     flash[:warning] = "You should Log Out do this"
     redirect_to admin_root_url
   end
+
 end
