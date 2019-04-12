@@ -56,6 +56,14 @@ class User < ApplicationRecord
     update_columns activated: true ,activated_at: Time.zone.now
   end
 
+  def block
+    update_attribute :blocked_at, Time.zone.now
+  end
+
+  def unblock
+    update_attribute :blocked_at, nil
+  end
+
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end

@@ -1,4 +1,5 @@
 class Admin::SessionsController < Admin::BaseController
+  skip_before_action :admin_check_login
   before_action :admin_check_log_out, only: [:new, :create]
 
   def new; end

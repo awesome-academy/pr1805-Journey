@@ -1,4 +1,5 @@
 //= require ./jquery.js
+//= require jquery_ujs
 //= require ./bootstrap.bundle.js
 //= require ./jquery.easing.js
 //= require ./Chart.js

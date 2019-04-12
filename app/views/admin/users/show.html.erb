@@ -1,0 +1,24 @@
+<div>
+  <table class="table table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Avatar</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Is_Admin</th>
+      <th>Bio</th>
+      <th>Activated_At</th>
+    </tr>
+      <tr>
+        <td><%= @user.id %></td>
+        <td><%= image_tag @user.picture.url if @user.picture? %></td>
+        <td><%= @user.name %></td>
+        <td><%= @user.email  %></td>
+        <td><%= @user.phone %></td>
+        <td><%= @user.is_admin  %></td>
+        <td><%= @user.bio %></td>
+        <td><%= @user.activated_at %></td>
+      </tr>
+    </table>
+</div>
