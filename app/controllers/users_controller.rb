@@ -1,7 +1,6 @@
 class UsersController <  ApplicationController
   before_action :authenticate, except: [:new, :create]
   before_action :load_user, except: [:index, :new, :create]
-  before_action :new_notifications, only: [:index, :show, :edit]
   before_action :correct_user, only: [:edit, :update]
 
   def index

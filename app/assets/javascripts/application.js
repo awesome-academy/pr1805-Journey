@@ -32,4 +32,15 @@ $(document).on('turbolinks:load', function(){
   tinyMCE.init({
     selector: "textarea.tinymce"
   });
+  $('#star-rating').raty({
+    path: '/assets/',
+    scoreName: 'rate[star]'
+  });
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
 })
