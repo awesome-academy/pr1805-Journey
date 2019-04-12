@@ -57,11 +57,11 @@ class User < ApplicationRecord
   end
 
   def block
-    update_attribute :blocked_at, Time.zone.now
+    update blocked_at: Time.zone.now
   end
 
   def unblock
-    update_attribute :blocked_at, nil
+    update blocked_at: nil
   end
 
   def send_activation_email

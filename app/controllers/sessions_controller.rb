@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
     user = User.find_by email: params[:session][:email].downcase
     if user && user.authenticate(params[:session][:password])
       if user.blocked_at?
-        flash[:warning] = "Account was BAN at #{user.blocked_at.strftime("%T-%d/%m/%Y")}!!
+        flash[:warning] = "Account was BAN at
+          #{user.blocked_at.strftime("%T-%d/%m/%Y")}!!
           Contact to Admin via Mail: duynn.mta@gmai.com"
         redirect_to root_url
       else
