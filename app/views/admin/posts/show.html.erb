@@ -1,0 +1,19 @@
+<section class="articles-area section-padding-0-100">
+<%= link_to @post.user.name, user_path(@post.user.id), class: "post-title" %>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+          <div class="mt-100">
+            <div class="login-panel panel panel-default">
+              <h1><%= @post.title %></h1>
+              <p>
+                <p><%= @post.content.html_safe %></p>
+              </p>
+              <%= render "comments/comments", @comments %>
+              <%= render "comments/comment_form", post: @post %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

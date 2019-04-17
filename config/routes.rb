@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     root "dashboards#index"
     get "/index", to: "dashboards#index"
     resources :users
+    resources :posts, only: [:index, :show, :destroy]
 
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
