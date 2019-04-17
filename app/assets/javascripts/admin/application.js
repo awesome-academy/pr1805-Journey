@@ -8,3 +8,6 @@
 //= require ./sb-admin.js
 //= require ./datatables-demo.js
 //= require ./chart-area-demo.js
+//= require Chart.bundle
+//= require highcharts
+//= require chartkick

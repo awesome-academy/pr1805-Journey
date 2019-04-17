@@ -1,9 +1,9 @@
 <ul class="sidebar navbar-nav">
   <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <%= link_to admin_root_url, class: "nav-link" do %>
       <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Dashboard</span>
-    </a>
+      Dashboard
+    <% end %>
   </li>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
@@ -14,9 +14,6 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
       <h6 class="dropdown-header">Login Screens:</h6>
-      <a class="dropdown-item" href="login.html">Login</a>
-      <a class="dropdown-item" href="register.html">Register</a>
-      <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
       <div class="dropdown-divider"></div>
       <h6 class="dropdown-header">Other Pages:</h6>
       <a class="dropdown-item" href="404.html">404 Page</a>
@@ -24,13 +21,15 @@
     </div>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="charts.html">
+      <%= link_to admin_charts_path, class: "nav-link" do %>
       <i class="fas fa-fw fa-chart-area"></i>
-      <span>Charts</span></a>
+      Chart
+      <% end %>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="tables.html">
+    <%= link_to admin_users_path, class: "nav-link" do %>
       <i class="fas fa-fw fa-table"></i>
-      <span>Tables</span></a>
+      Tables
+    <% end  %>
   </li>
 </ul>

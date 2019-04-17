@@ -29,6 +29,8 @@ gem "sticky-rails"
 gem "scroll-up", "~> 0.0.5"
 gem "will_paginate", "~> 3.1.7"
 gem "tinymce-rails"
+gem "chartkick"
+gem "faker"
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "capybara", "~> 2.13"

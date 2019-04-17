@@ -35,5 +35,10 @@ Rails.application.routes.draw do
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
     delete "/log_out", to: "sessions#destroy"
+
+    resources :posts
+    resources :places
+
+    get "/charts", to: "charts#index"
   end
 end

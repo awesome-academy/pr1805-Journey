@@ -13,8 +13,8 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: 118.70.207.126
-  port: 3306
+  host: maiatech.com.vn
+  port: 13306
   username: solo_team
   password: maianh97
   socket: /var/run/mysqld/mysqld.sock
