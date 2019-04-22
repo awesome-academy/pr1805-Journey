@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190412130029) do
+ActiveRecord::Schema.define(version: 20190421145840) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.text "content"
@@ -38,17 +38,19 @@ ActiveRecord::Schema.define(version: 20190412130029) do
     t.integer "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "opened_at"
   end
 
   create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
   end
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.text "title"
-    t.text "content"
+    t.string "title", limit: 8000, collation: "utf8_general_ci"
+    t.string "content", limit: 8000, collation: "utf8_general_ci"
     t.float "avg_star", limit: 24
     t.bigint "user_id"
     t.bigint "place_id"
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(version: 20190412130029) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "review"
     t.index ["post_id"], name: "index_rates_on_post_id"
     t.index ["user_id"], name: "index_rates_on_user_id"
   end
@@ -80,6 +83,8 @@ ActiveRecord::Schema.define(version: 20190412130029) do
     t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "content", limit: 4294967295
+    t.datetime "opened_at"
     t.index ["post_id"], name: "index_reports_on_post_id"
     t.index ["user_id"], name: "index_reports_on_user_id"
   end

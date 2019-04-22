@@ -7,10 +7,12 @@
         <th>Account</th>
         <th>Title</th>
         <th>Content</th>
+        <th>Place</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
+      <%= will_paginate @posts %>
       <%= render @posts %>
     </tbody>
   </table>

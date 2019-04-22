@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Place Managerment</h1>
+  <td><%= link_to "+ New", "#", data: {toggle: "modal", target: "#myModal"}, class: "btn btn-primary" %></td>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Count Post</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= will_paginate @places %>
+      <%= render @places %>
+    </tbody>
+  </table>
+</div>
+<%= render "admin/places/new", place: @place %>

@@ -1,0 +1,24 @@
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">New Place</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <%= form_for [:admin, place] do |f| %>
+          <%= render "admin/shared/error_place_messages"%>
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, placeholder: "Name..." , class: "form_control" %>
+          </div>
+          <%= f.hidden_field :status, value: :archived %>
+          <%= f.submit "Create", class: "btn btn-primary" %>
+          <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
