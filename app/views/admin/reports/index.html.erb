@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Reports Managerment</h1>
+  <% @reports.each do |report| %>
+    <%= render "admin/notifications/notification", notification: report %>
+    <%= link_to "Remove", admin_report_path(report) , method: :delete %>
+    <%= link_to "Details", admin_report_path(report), remote: true, data: {target: "#myModal", toggle: "modal"}%>
+  <% end %>
+  <div class="modal fade" id="myModal" role="dialog">
+  </div>
+</div>

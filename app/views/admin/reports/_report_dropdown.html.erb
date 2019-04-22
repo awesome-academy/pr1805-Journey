@@ -1,0 +1,7 @@
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+  <% @reports_limits.each do |report| %>
+    <%= render "admin/notifications/notification", notification: report %>
+  <% end %>
+  <div class="dropdown-divider"></div>
+  <%= link_to "See All", admin_reports_path, class: "dropdown-item" %>
+</div>

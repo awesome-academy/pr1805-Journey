@@ -1,5 +1,10 @@
 <section class="articles-area section-padding-0-100">
-<%= link_to @post.user.name, user_path(@post.user.id), class: "post-title" %>
+  <%= link_to @post.user.name, admin_user_path(@post.user.id), class: "post-title" %><br>
+  <% if @post.status == "active" %>
+    <%= link_to "UnBlock", admin_post_path(@post), method: :delete, class: "post-title, btn btn-warning" %>
+  <% else %>
+    <%= link_to "Block", admin_post_path(@post), method: :delete, class: "post-title, btn btn-danger" %>
+  <% end %>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-8">
@@ -11,7 +16,6 @@
                 <p><%= @post.content.html_safe %></p>
               </p>
               <%= render "comments/comments", @comments %>
-              <%= render "comments/comment_form", post: @post %>
           </div>
         </div>
       </div>

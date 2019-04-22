@@ -4,7 +4,12 @@ class Admin::UsersController < Admin::BaseController
     @users = User.activated.paginate page: params[:page], per_page: 6
   end
 
-  def show; end
+  def show
+    if params[:notification_id]
+      @notification = Notification.find_by id: params[:notification_id]
+      @notification.update opened_at: Time.zone.now
+    end
+  end
 
   def edit; end
 
@@ -22,7 +27,7 @@ class Admin::UsersController < Admin::BaseController
 
   def destroy
     @user.destroy
-    flash[:success] = "Deleted User #{@user.name}"
+    flash[:success] = "success!"
     redirect_to admin_users_path
   end
 
