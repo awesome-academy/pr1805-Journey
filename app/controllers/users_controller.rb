@@ -1,11 +1,14 @@
 class UsersController <  ApplicationController
   before_action :authenticate, except: [:new, :create]
   before_action :load_user, except: [:index, :new, :create]
-  before_action :new_notifications, only: [:index, :show, :edit]
   before_action :correct_user, only: [:edit, :update]
 
   def index
     @users = User.activated.paginate page: params[:page], per_page: 5
+    @results = User.search_user params[:keyword]
+    return if @results.present?
+    flash[:warning] = "User Invalid"
+    redirect_to users_path
   end
 
   def new
@@ -50,7 +53,6 @@ class UsersController <  ApplicationController
     @users = @user.followers
     render :show_follow
   end
-
 
   private
 

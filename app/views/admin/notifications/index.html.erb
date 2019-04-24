@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Notifications Managerment</h1>
+  <% @notifications.each do |notification| %>
+    <%= render notification %>
+    <%= link_to "Remove", admin_notification_path(notification) , method: :delete %>
+  <% end %>
+</div>

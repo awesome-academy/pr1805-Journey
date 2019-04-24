@@ -1,0 +1,14 @@
+<div class="profile-userpic">
+  <%= image_tag notification.send_from.picture, class: "pull-left" %>
+</div>
+<div class="message-body">
+  <small class="pull-right"><%= time_ago_in_words(notification.created_at)%></small>
+  <strong>
+    <%= link_to notification.send_from.name, admin_user_path(notification.send_from_id) %>
+  </strong>
+  <%= notification.send_from_type %>
+  <%= check_notification(notification) %>
+  <%= link_to notification.send_to.name, admin_user_path(notification.send_to_id) %>
+  <br />
+  <small class="text-muted"><%= notification.created_at %></small>
+</div>

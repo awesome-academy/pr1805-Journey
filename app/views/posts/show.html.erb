@@ -5,14 +5,49 @@
           <div class="mt-100">
             <div class="login-panel panel panel-default">
               <h1><%= @post.title %></h1>
-              <p>
-                <p><%= @post.content.html_safe %></p>
-              </p>
-              <%= render "comments/comments", @comments %>
-              <%= render "comments/comment_form", post: @post %>
+              <% if @rate_user.include? current_user.id %>
+                <p><strong>You're Rate This Post !</strong></p>
+              <% else %>
+                <%= link_to "Rate Me", new_post_rate_path(@post),
+                  class: "btn btn-danger" %>
+              <% end %>
+              <div class="star-rating" data-score= <%= @avg_rate %> ></div>
+              <em>User Rating: <%=  @post.rates.size %></em>
+              <div>
+                <div class="col-md-7 col-md-offset-1">
+                  <% @post.rates.each do |rate| %>
+                    <div class="rating-icon" style="border: 1px solid black;">
+                      <div class="star-rating" data-score= <%= rate.star %> ></div>
+                      <p><strong>Review: <%= rate.review %></strong></p>
+                      <p><strong>Reviewer: <%= link_to "#{rate.user.name}",
+                        rate.user %></strong></p>
+                      <p>
+                        <strong>
+                          At: <%= rate.updated_at.strftime "%T-%d/%m/%Y" %>
+                        </strong>
+                      </p>
+                      <% if current_user? rate.user %>
+                        <%= link_to "Edit Rate", edit_post_rate_path(@post, rate),
+                          class: "btn btn-info" %>
+                        <%= link_to "Delete Rate", post_rate_path(@post, rate),
+                          class: "btn btn-danger",  method: :delete, data:
+                          { confirm: "Are you sure?" } %>
+                      <% end  %>
+                    </div>
+                  <% end %>
+              </div>
+            </div>
+            <p>
+              <p><%= @post.content.html_safe %></p>
+            </p>
           </div>
         </div>
+      </div>
+      <div class="col-md-7">
+        <%= render "comments/comments", post: @post %>
+        <%= render "comments/comment_form", post: @post %>
       </div>
     </div>
   </div>
 </section>
+

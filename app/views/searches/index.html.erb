@@ -1,0 +1,15 @@
+<h3>Search Result</h3>
+<table class="table table-striped">
+  <tr>
+    <th>Post</th>
+    <th>Place</th>
+    <th>Created_At</th>
+  </tr>
+  <% @results.each do |result| %>
+    <tr>
+      <td><%= link_to result.title, post_path(result) %></td>
+      <td><%= result.place.name %></td>
+      <td><%= result.created_at.strftime("%T-%d/%m/%Y") %></td>
+    </tr>
+  <% end %>
+</table>

@@ -3,6 +3,10 @@ class Notification < ApplicationRecord
   belongs_to :send_to, class_name: User.name
 
   scope :newest , -> {order  created_at: :desc}
-  scope :check_send_to , -> (user){where("send_to_id = #{user}")}
-  scope :check_send_from, -> (user){where("send_from_id  != #{user}")}
+  scope :check_send_to , -> (user){where send_to_id: user}
+  scope :check_send_from, -> (user){where.not send_from_id: user}
+  scope :admin_check_send_to_id, ->(current_admin){where send_to_id: current_admin.id}
+  scope :admin_check_send_from_type, ->{where.not send_from_type: 'Reported'}
+  scope :check_send_from_type, ->{where send_from_type: 'Reported'}
+  scope :check_opened_at, ->{where opened_at: nil}
 end

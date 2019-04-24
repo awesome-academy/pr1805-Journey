@@ -12,8 +12,8 @@ class User < ApplicationRecord
   foreign_key: :followed_id, dependent: :destroy
   has_many :following, through: :active_relations , source: :followed
   has_many :followers ,through: :passive_relations, source: :follower
-  has_many :rates
-  has_many :comments
+  has_many :rates, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :reports
   has_many :notifications, class_name: Notification.name, foreign_key: :send_to_id, dependent: :destroy
 
@@ -28,6 +28,11 @@ class User < ApplicationRecord
   validates :bio , length: {maximum: 150}, allow_nil: :true
   mount_uploader :picture, AvatarUploader
   validate :avatar_size
+  scope :search_name_email,
+    ->(search_name, search_email){where("name like '%#{search_name}%' or email like '%#{search_email}%'")}
+  scope :newest, ->{order created_at: :desc}
+  scope :search_user, -> (keyword) {where("(email) LIKE '%#{keyword}%'
+    OR (name) LIKE '%#{keyword}%'")}
 
   class << self
     def digest string
