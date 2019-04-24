@@ -1,7 +1,6 @@
 class UsersController <  ApplicationController
   before_action :authenticate, except: [:new, :create]
   before_action :load_user, except: [:index, :new, :create]
-  before_action :new_notifications, only: [:index, :show, :edit]
   before_action :correct_user, only: [:edit, :update]
 
   def index
@@ -51,6 +50,15 @@ class UsersController <  ApplicationController
     render :show_follow
   end
 
+  def search_user
+    @results = User.search_user params[:find]
+    if params[:find].blank?
+      flash[:warning] = "User Invalid!"
+    end
+    return if @results.present?
+    flash[:warning] = "User Invalid"
+    redirect_to users_path
+  end
 
   private
 

@@ -12,8 +12,8 @@ class User < ApplicationRecord
   foreign_key: :followed_id, dependent: :destroy
   has_many :following, through: :active_relations , source: :followed
   has_many :followers ,through: :passive_relations, source: :follower
-  has_many :rates
-  has_many :comments
+  has_many :rates, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :reports
   has_many :notifications, class_name: Notification.name, foreign_key: :send_to_id, dependent: :destroy
 
@@ -25,9 +25,11 @@ class User < ApplicationRecord
   has_secure_password
   validates :password ,length: {minimum: 8 , maximum: 20}, allow_nil: true
   validates :phone, uniqueness: true ,length: {minimum:8}, allow_nil: true
-  validates :bio , length: {maximum: 150}, allow_nil: :true
+  validates :bio, length: {maximum: 150}, allow_nil: :true
   mount_uploader :picture, AvatarUploader
   validate :avatar_size
+  scope :search_user, -> (email) {where("(email) LIKE '%#{email}%'
+    OR (name) LIKE '%#{email}%'")}
 
   class << self
     def digest string

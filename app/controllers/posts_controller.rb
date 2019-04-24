@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
   before_action :load_post, except: [:index, :new]
   before_action :correct_post, only: [:edit, :update, :destroy]
-  before_action :new_notifications, except: [:update, :create, :destroy]
 
   def index; end
-  def show;  end
+
+  def show
+    @avg_rate = @post.rates.average(:star)&.round(2) || 0
+    @rate_user = @post.rates.pluck(:user_id)
+  end
 
   def new
     @post = Post.new
@@ -56,5 +59,4 @@ class PostsController < ApplicationController
     flash[:warning] = "Ban khong co quyen chinh sua hoac xoa bai viet nay! "
     redirect_to root_path
   end
-
 end

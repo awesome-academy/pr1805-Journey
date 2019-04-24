@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-  before_action :new_notifications, only: [:index, :about]
+
   def index
     if logged_in?
       @posts = Post.newest.paginate page: params[:page], per_page: 5

@@ -110,3 +110,33 @@ span.tags {
     margin: 1px 0px 30px 50px;
     border-radius:1px;
 }
+.rating-icon{
+  width: 100%;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 10px !important;
+}
+.input-group-btn{
+  position: relative;
+}
+button.btn.btn-info.glyphicon.glyphicon-search{
+  height: 39px;
+  line-height: 35px;
+  border-radius: 5px;
+  border: none;
+  padding: 0px 35px 0 0;
+}
+button.btn.btn-info.glyphicon.glyphicon-search:after{
+  content: "\f002";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    color: #000;
+    font-size: 18px;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 5px;
+    left: 7px;
+}

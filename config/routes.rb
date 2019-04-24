@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "homes#index"
   get "/index", to: "homes#index"
   get "/about", to: "homes#about"
-
+  get "/users/searches", to: "users#search_user"
   resources :users do
     member do
       get :following, :followers
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources  :posts do
     resources :comments, except: [:index]
     resources :reports, only: [:new, :create]
+    resources :rates, except: [:index, :show]
   end
 
   get "/signup", to: "users#new"
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
   resources :accounts, only: [:edit]
   resources :relations, only: [:create, :destroy]
   resources :password_resets, except: [:index, :destroy]
+  resources :searches, only: :index
 
   namespace :admin do
     root "dashboards#index"
