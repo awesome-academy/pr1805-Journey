@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources  :posts do
     resources :comments, except: [:index]
     resources :reports, only: [:new, :create]
+    resources :rates, except: [:index, :show]
   end
 
   get "/signup", to: "users#new"

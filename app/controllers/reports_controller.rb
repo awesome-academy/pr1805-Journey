@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   before_action :load_report, only: [:new, :create]
-  before_action :new_notifications, only: [:new]
+
   def new
     @report = Report.new
   end
