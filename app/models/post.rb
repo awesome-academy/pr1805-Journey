@@ -8,5 +8,6 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: {maximum: 100}
   validates :content, presence: true
   validates :place,  presence: true
+  enum status: [:active, :archived]
   before_save {self.title = title.upcase}
 end

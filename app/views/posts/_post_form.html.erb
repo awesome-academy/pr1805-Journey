@@ -19,6 +19,7 @@
                   <div class="form-group">
                     <%= f.text_area :content, placeholder: "Content...", class: "tinymce", rows: 10, cols: 10 %>
                   </div>
+                  <%= f.hidden_field :status, value: :archived %>
                 </fieldset>
                 <%= f.submit "Create Post", class: "btn btn-primary" %>
               <% end %>

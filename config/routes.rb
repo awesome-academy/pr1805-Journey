@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
     resources :posts
     resources :places
+    resources :notifications
+    resources :reports
 
     get "/charts", to: "charts#index"
   end

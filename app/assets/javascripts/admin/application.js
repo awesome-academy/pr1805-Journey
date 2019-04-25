@@ -1,5 +1,6 @@
 //= require ./jquery.js
-//= require jquery_ujs
+//= require rails-ujs
+//= require turbolinks
 //= require ./bootstrap.bundle.js
 //= require ./jquery.easing.js
 //= require ./Chart.js
@@ -10,3 +11,7 @@
 //= require ./chart-area-demo.js
 //= require Chart.bundle
 //= require chartkick
+
+$(document).on("click", ".btn-close-modal", function() {
+  $("#myModal").modal("hide");
+});
