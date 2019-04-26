@@ -1,5 +1,29 @@
 <div class="container">
   <h2>Post Managerment</h2>
+   <div class="input-group">
+    <%= form_tag admin_posts_path, method: :get do %>
+      <%= text_field_tag :search_title, params[:search_title], class: "form-control", placeholder: "Search for title...", aria: {label: "Search", describedby: "basic-addon2"}%>
+      <div class="input-group-append">
+        <%= submit_tag "Search", class: "btn btn-primary"  %>
+      </div>
+    <% end %>
+  </div>
+  <div class="input-group">
+    <%= form_tag admin_posts_path, method: :get do %>
+      <%= text_field_tag :search_place, params[:search_place], class: "form-control", placeholder: "Search for place...", aria: {label: "Search", describedby: "basic-addon2"}%>
+      <div class="input-group-append">
+        <%= submit_tag "Search", class: "btn btn-primary"  %>
+      </div>
+    <% end %>
+  </div>
+  <div class="input-group">
+    <%= form_tag admin_posts_path, method: :get do %>
+      <%= text_field_tag :search_content, params[:search_content], class: "form-control", placeholder: "Search for content...", aria: {label: "Search", describedby: "basic-addon2"}%>
+      <div class="input-group-append">
+        <%= submit_tag "Search", class: "btn btn-primary"  %>
+      </div>
+    <% end %>
+  </div>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -13,7 +37,15 @@
     </thead>
     <tbody>
       <%= will_paginate @posts %>
-      <%= render @posts %>
+      <% if params[:search_title] %>
+        <%= render @posts_titles %>
+      <% elsif params[:search_place] %>
+        <%= render @posts_places %>
+      <% elsif params[:search_content] %>
+        <%= render @posts_contents %>
+      <% else %>
+        <%= render @posts %>
+      <% end %>
     </tbody>
   </table>
 </div>

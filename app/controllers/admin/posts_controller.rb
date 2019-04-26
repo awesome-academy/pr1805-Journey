@@ -2,6 +2,9 @@ class Admin::PostsController < Admin::BaseController
   before_action :load_post, only: [:show, :destroy]
 
   def index
+    @posts_titles = Post.search_title(params[:search_title]).newest.paginate page: params[:page], per_page: 10 if params[:search_title]
+    @posts_places = Post.search_place(params[:search_place]).newest.paginate page: params[:page], per_page: 10 if params[:search_place]
+    @posts_contents = Post.search_content(params[:search_content]).newest.paginate page: params[:page], per_page: 10 if params[:search_content]
     @posts = Post.paginate page: params[:page], per_page: 10
   end
 
