@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/about", to: "homes#about"
 
   resources :users do
+    resources :reports, only: [:new, :create]
     member do
       get :following, :followers
     end
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
   resources :accounts, only: [:edit]
   resources :relations, only: [:create, :destroy]
   resources :password_resets, except: [:index, :destroy]
+  resources :notifications, only: [:index, :destroy]
 
   namespace :admin do
     root "dashboards#index"

@@ -18,14 +18,15 @@
             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" >
               <em class="fa fa-bell" ></em>
               <span class="label label-danger" id = "noti_Counter" >
-                <%= @new_notifications.count %>
+                <%= @new_notifications_count.count %>
               </span>
             </a>
             <ul class="dropdown-menu " >
               <li id = "notifications">
-                <%= render @new_notifications %>
+                <%= render @notifications_limits %>
               </li>
               <li class="divider"></li>
+              <li><%= link_to "See All", notifications_path %></li>
             </ul>
           </li>
         <% end %>

@@ -20,7 +20,6 @@
 //= require rails-ujs
 //= require tinymce
 //= require turbolinks
-//= require_tree ./lib
 //= require_directory .
 $(document).on('turbolinks:load', function(){
   $('#user_picture').bind('change', function() {

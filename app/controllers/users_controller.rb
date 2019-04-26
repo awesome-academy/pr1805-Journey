@@ -23,6 +23,8 @@ class UsersController <  ApplicationController
   end
 
   def show
+    @notification = Notification.find_by id: params[:notification_id]
+    @notification.update opened_at: Time.current if params[:notification_id]
     @unfollow = current_user.active_relations.find_by(followed_id: @user.id)
     @posts = @user.posts.newest.paginate page: params[:page], per_page: 5
     redirect_to root_url if !@user.activated?

@@ -1,9 +1,9 @@
 class Post < ApplicationRecord
   has_many :rates, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :reports
   belongs_to :user
   belongs_to :place
+  has_many :notifications, class_name: Notification.name, foreign_key: :post_id, dependent: :destroy
   scope :newest , -> {order  created_at: :desc}
   validates :title, presence: true, length: {maximum: 100}
   validates :content, presence: true
