@@ -1,5 +1,13 @@
 <div class="container">
   <h1>Place Managerment</h1>
+  <div class="input-group">
+    <%= form_tag admin_places_path, method: :get do %>
+      <%= text_field_tag :search_place, params[:search_place], class: "form-control", placeholder: "Search for place...", aria: {label: "Search", describedby: "basic-addon2"}%>
+      <div class="input-group-append">
+        <%= submit_tag "Search", class: "btn btn-primary"  %>
+      </div>
+    <% end %>
+  </div>
   <td><%= link_to "+ New", "#", data: {toggle: "modal", target: "#myModal"}, class: "btn btn-primary" %></td>
   <table class="table table-bordered">
     <thead>
@@ -12,7 +20,11 @@
     </thead>
     <tbody>
       <%= will_paginate @places %>
-      <%= render @places %>
+      <% if params[:search_place] %>
+        <%= render @search_places %>
+      <% else %>
+        <%= render @places %>
+      <% end %>
     </tbody>
   </table>
 </div>
