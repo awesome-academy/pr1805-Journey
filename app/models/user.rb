@@ -28,6 +28,9 @@ class User < ApplicationRecord
   validates :bio , length: {maximum: 150}, allow_nil: :true
   mount_uploader :picture, AvatarUploader
   validate :avatar_size
+  scope :search_name_email,
+    ->(search_name, search_email){where("name like '%#{search_name}%' or email like '%#{search_email}%'")}
+  scope :newest, ->{order created_at: :desc}
 
   class << self
     def digest string

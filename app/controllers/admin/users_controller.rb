@@ -1,6 +1,9 @@
 class Admin::UsersController < Admin::BaseController
   before_action :load_user, except: [:index]
   def index
+    @search_users = User.search_name_email(params[:search_name], params[:search_email]).
+      newest.paginate page: params[:page], per_page: 6 if params[:search_name] ||
+      params[:search_email]
     @users = User.activated.paginate page: params[:page], per_page: 6
   end
 
