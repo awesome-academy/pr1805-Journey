@@ -1,0 +1,25 @@
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Report Post</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for [obj, Report.new] do |f| %>
+            <div class="form-group">
+              <%= f.label :content %>
+              <%= f.text_area :content, placeholder: "Content..." , class: "form_control" %>
+            </div>
+            <%= f.hidden_field :send_to_id, value: send_to_id %>
+            <%= f.hidden_field :send_to_type, value: send_to_type %>
+            <%= f.hidden_field :url, value: url %>
+          <%= f.submit "Create", class: "btn btn-primary", data: {confirm: "Are you sure?"} %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

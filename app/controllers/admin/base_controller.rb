@@ -10,11 +10,11 @@ class Admin::BaseController < ActionController::Base
     @reports = Notification.check_send_from_type.newest.paginate page: params[:page], per_page: 10
   end
   def new_notifications
-    @new_notifications_count = Notification.admin_check_send_from_type.admin_check_send_to_id(current_admin).check_opened_at.newest
+    @new_notifications_count = Notification.admin_check_send_from_type.check_opened_at.newest
     @notifications_limits = Notification.admin_check_send_from_type.admin_check_send_to_id(current_admin).newest.limit(8)
   end
 
   def notifications
-    @notifications = Notification.admin_check_send_from_type.admin_check_send_to_id(current_admin).newest.paginate page: params[:page], per_page: 10
+    @notifications = Notification.admin_check_send_from_type.newest.paginate page: params[:page], per_page: 10
   end
 end

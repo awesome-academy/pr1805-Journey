@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190422130749) do
+ActiveRecord::Schema.define(version: 20190428104929) do
+
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.text "content"
     t.bigint "user_id"
@@ -34,10 +35,12 @@ ActiveRecord::Schema.define(version: 20190422130749) do
     t.string "send_to_type"
     t.integer "send_to_id"
     t.integer "send_from_id"
-    t.integer "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "opened_at"
+    t.integer "report_id"
+    t.integer "post_id"
+    t.integer "comment_id"
   end
 
   create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -79,14 +82,13 @@ ActiveRecord::Schema.define(version: 20190422130749) do
   end
 
   create_table "reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.bigint "user_id"
-    t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "content", limit: 4294967295
-    t.datetime "opened_at"
-    t.index ["post_id"], name: "index_reports_on_post_id"
-    t.index ["user_id"], name: "index_reports_on_user_id"
+    t.integer "status"
+    t.integer "send_to_id"
+    t.string "send_to_type"
+    t.integer "url"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

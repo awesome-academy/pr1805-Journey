@@ -1,5 +1,7 @@
 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-  <%= render @notifications_limits %>
+  <% @notifications_limits.each do |notification| %>
+    <%= render notification %>
+  <% end %>
   <div class="dropdown-divider"></div>
   <%= link_to "See All", admin_notifications_path , class: "dropdown-item" %>
 </div>

@@ -8,8 +8,6 @@
       <% if current_user? post.user  %>
         <%= link_to "Edit", edit_post_path(post) %>
         <%= link_to "Delete", post, method: :delete, data: {confirm: "Are you sure?"}%>
-      <% else %>
-        <%= link_to "Report", new_post_report_path(post) %>
       <% end %>
       <p><%= post.content.html_safe %></p>
     </div>
