@@ -10,9 +10,9 @@
 // about supported directives.
 //
 //= require jquery3
+//= require_tree .
 //= require_tree ./lib
 //= require jquery
-//= require_tree .
 //= require scroll-up
 //= require popper
 //= require magnific-popup
