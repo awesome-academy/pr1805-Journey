@@ -1,6 +1,9 @@
 class Notification < ApplicationRecord
   belongs_to :send_from, class_name: User.name
   belongs_to :send_to, class_name: User.name
+  belongs_to :report, dependent: :destroy, optional: true
+  belongs_to :post, optional: true
+  belongs_to :comment, optional: true
 
   scope :newest , -> {order  created_at: :desc}
   scope :check_send_to , -> (user){where send_to_id: user}

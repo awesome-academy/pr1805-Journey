@@ -5,6 +5,8 @@ class PostsController < ApplicationController
   def index; end
 
   def show
+    @notification = Notification.find_by id: params[:notification_id]
+    @notification.update opened_at: Time.current if params[:notification_id]
     @avg_rate = @post.rates.average(:star)&.round(2) || 0
     @rate_user = @post.rates.pluck(:user_id)
   end

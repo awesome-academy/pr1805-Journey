@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
+  include NotificationsHelper
   before_action :new_notifications
   before_action :place_options
 
@@ -10,7 +11,8 @@ class ApplicationController < ActionController::Base
   end
   def new_notifications
     if logged_in?
-      @new_notifications = current_user.notifications.check_send_to(current_user.id).check_send_from(current_user.id).newest
+      @new_notifications_count = Notification.admin_check_send_from_type.check_send_to(current_user.id).check_send_from(current_user.id).check_opened_at.newest
+      @notifications_limits = Notification.admin_check_send_from_type.check_send_to(current_user.id).check_send_from(current_user.id).newest.limit(8)
     end
   end
 

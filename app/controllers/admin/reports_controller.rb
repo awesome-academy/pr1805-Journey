@@ -1,10 +1,9 @@
 class Admin::ReportsController < Admin::BaseController
-  before_action :load_report, only: [:show, :destroy]
+  before_action :load_report, only: :show
+  
   def index;  end
 
   def show;  end
-
-  def destroy;  end
 
   private
   def load_report

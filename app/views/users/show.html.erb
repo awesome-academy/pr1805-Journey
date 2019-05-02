@@ -37,8 +37,9 @@
               <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu text-left" role="menu">
-              <li class="divider dropdown-item"></li>
-              <li class="dropdown-item">Report this user for spam</li>
+              <li class="dropdown-item">
+                <%= link_to "Report", new_user_report_path(@user), class: "btn btn-info btn-lg", data: {toggle: "modal", target: "#myModal"}%>
+              </li>
               <li class="divider dropdown-item"></li>
             </ul>
           </div>
@@ -66,3 +67,4 @@
     </div>
   </section>
 </div>
+<%= render "reports/new", obj: @user, send_to_id: @user.id, send_to_type: "Account", url: @user.id  %>

@@ -1,13 +1,13 @@
-<div class="dropdown">
-  <a href="profile.html" class="pull-left">
-  <%=  image_tag notification.send_from.picture, class: "pull-left, img-circle" %>
-  </a>
-  <div>
-    <small class="pull-right"><%= time_ago_in_words(notification.created_at)%></small>
-    <strong><%= notification.send_from.name%></strong>
-    <%= notification.send_from_type %>
-    <strong>your <%= notification.send_to_type%></strong>.
-    <br />
-    <small class="text-muted"><%= notification.created_at %></small>
-  </div>
+<div class="profile-userpic">
+  <%= image_tag notification.send_from.picture, class: "pull-left" %>
+</div>
+<div class="message-body">
+  <small class="pull-right"><%= time_ago_in_words(notification.created_at)%></small>
+  <strong>
+    <%= link_to notification.send_from.name, user_path(notification.send_from_id) %>
+  </strong>
+  <%= notification.send_from_type %>
+   your <%= check_notifications(notification) %>
+  <br />
+  <small class="text-muted"><%= notification.created_at %></small>
 </div>

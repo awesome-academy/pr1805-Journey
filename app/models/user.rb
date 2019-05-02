@@ -14,7 +14,6 @@ class User < ApplicationRecord
   has_many :followers ,through: :passive_relations, source: :follower
   has_many :rates, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :reports
   has_many :notifications, class_name: Notification.name, foreign_key: :send_to_id, dependent: :destroy
 
   validates :name , presence: true , length: {minimum: 5}

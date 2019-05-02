@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/users/searches", to: "users#search_user"
 
   resources :users do
+    resources :reports, only: [:new, :create]
     member do
       get :following, :followers
     end
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
   resources :relations, only: [:create, :destroy]
   resources :password_resets, except: [:index, :destroy]
   resources :searches, only: :index
+  resources :notifications, only: [:index, :destroy]
 
   namespace :admin do
     root "dashboards#index"
