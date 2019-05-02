@@ -30,6 +30,8 @@ class User < ApplicationRecord
   scope :search_name_email,
     ->(search_name, search_email){where("name like '%#{search_name}%' or email like '%#{search_email}%'")}
   scope :newest, ->{order created_at: :desc}
+  scope :search_user, -> (keyword) {where(" email LIKE '%#{keyword}%'
+    OR name LIKE '%#{keyword}%'")}
 
   class << self
     def digest string

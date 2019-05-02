@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include NotificationsHelper
   before_action :new_notifications
+  before_action :place_options
 
   def places_max_posts
     query = Post.select("place_id, COUNT(id) as post_count").group("place_id").order("post_count desc")
@@ -13,5 +14,9 @@ class ApplicationController < ActionController::Base
       @new_notifications_count = Notification.admin_check_send_from_type.check_send_to(current_user.id).check_send_from(current_user.id).check_opened_at.newest
       @notifications_limits = Notification.admin_check_send_from_type.check_send_to(current_user.id).check_send_from(current_user.id).newest.limit(8)
     end
+  end
+
+  def place_options
+    @place_options = Place.pluck(:name, :id)
   end
 end

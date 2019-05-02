@@ -1,0 +1,6 @@
+<tr>
+  <td><%= image_tag user.picture.presence || "default_avatar.png" %></td>
+  <td><%= link_to user.name ,user_path(user) %></td>
+  <td><%= user.email %></td>
+  <td><%= user.phone %></td>
+</tr>

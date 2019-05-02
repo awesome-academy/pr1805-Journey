@@ -13,4 +13,6 @@ class Post < ApplicationRecord
   scope :search_title, ->(search_title){where("title like '%#{search_title}%'")}
   scope :search_place, ->(search_place){joins("inner join places on places.id = place_id and places.name like '%#{search_place}%'")}
   scope :search_content, ->(search_content){where("content like '%#{search_content}%'")}
+  scope :search_title, -> (title) {where(" title LIKE '%#{title}%'")}
+  scope :search_place, -> (place_id) {where(place_id: place_id)}
 end

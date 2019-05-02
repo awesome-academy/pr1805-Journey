@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :relations, only: [:create, :destroy]
   resources :password_resets, except: [:index, :destroy]
   resources :notifications, only: [:index, :destroy]
+  resources :searches, only: :index
 
   namespace :admin do
     root "dashboards#index"

@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <div class="col-12 col-md-8 float-left">
           <h2><%= @user.name %></h2>
-          <%= image_tag @user.picture.url if @user.picture? %>
+          <%= image_tag @user.picture.presence || "default_avatar.png" %>
           <p><strong>Bio:</strong><%= @user.bio  %></p>
           <p><strong>Email:</strong><%= @user.email %></p>
           <p><strong>Contact: (+84) </strong><%= @user.phone %></p>
