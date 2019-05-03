@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::BaseController
     @search_users = User.search_name_email(params[:search_name], params[:search_email]).
       newest.paginate page: params[:page], per_page: 6 if params[:search_name] ||
       params[:search_email]
-    @users = User.activated.paginate page: params[:page], per_page: 6
+    @users = User.activated.paginate page: params[:page], per_page: 5
   end
 
   def show
@@ -17,14 +17,31 @@ class Admin::UsersController < Admin::BaseController
   def edit; end
 
   def update
-    if @user.blocked_at?
-      @user.unblock
-      flash[:warning] = "Unblock User have Email: #{@user.email} success"
-      redirect_to admin_users_path
-    else
-      @user.block
-      flash[:info] = "Block User have Email: #{@user.email} success"
-      redirect_to admin_users_path
+    if params[:function] == "block"
+      if @user.blocked_at?
+        @user.unblock
+        flash[:success] = "Unblock User have Email: #{@user.email} success"
+        redirect_to admin_users_path
+      else
+        @user.block
+        flash[:warning] = "Block User have Email: #{@user.email} success"
+        redirect_to admin_users_path
+      end
+    end
+    if params[:function] == "assign"
+      if @user.is_admin?
+        @user.update_attribute :is_admin, false
+        respond_to do |format|
+          format.html{ redirect_to @user}
+          format.js
+        end
+      else
+        @user.update_attribute :is_admin, true
+        respond_to do |format|
+          format.html{ redirect_to @user}
+          format.js
+        end
+      end
     end
   end
 
@@ -38,9 +55,9 @@ class Admin::UsersController < Admin::BaseController
   private
 
   def load_user
-      @user = User.find_by id: params[:id]
-      return if @user.present?
-      flash[:warning] = "User Invalid"
-      redirect_to admin_root_url
-    end
+    @user = User.find_by id: params[:id]
+    return if @user.present?
+    flash[:warning] = "User Invalid"
+    redirect_to admin_root_url
+  end
 end
