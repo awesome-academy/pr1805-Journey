@@ -1,8 +1,9 @@
 class Admin::ChartsController < Admin::BaseController
 
   def index
-    @users = User.group("DATE_FORMAT(activated_at,'%b-%x')").count
-    @posts = Post.group("DATE_FORMAT(created_at,'%b-%x')").count
-    @places = Place.group("DATE_FORMAT(created_at,'%b-%x')").count
+    type = params[:type] || "week"
+    @users = User.group_by_type type
+    @posts = Post.group_by_type type
+    @places = Place.group_by_type type
   end
 end

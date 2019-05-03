@@ -32,6 +32,16 @@ class User < ApplicationRecord
   scope :newest, ->{order created_at: :desc}
   scope :search_user, -> (keyword) {where(" email LIKE '%#{keyword}%'
     OR name LIKE '%#{keyword}%'")}
+  scope :group_by_type, -> (type) {
+    case type
+    when type = "week"
+      group("DATE_FORMAT(activated_at,'%v-%x')").count
+    when type = "month"
+      group("DATE_FORMAT(activated_at,'%b-%x')").count
+    when type = "year"
+      group("DATE_FORMAT(activated_at,'%x')").count
+    end
+  }
 
   class << self
     def digest string

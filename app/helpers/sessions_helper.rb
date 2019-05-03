@@ -40,4 +40,12 @@ module SessionsHelper
     session.delete :user_id
     @current_user = nil
   end
+
+  private
+
+  def check_login
+    return if logged_in?
+    flash[:danger] = "You Must Log In First!!"
+    redirect_to signin_url
+  end
 end
