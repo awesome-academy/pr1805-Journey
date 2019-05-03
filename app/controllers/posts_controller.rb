@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :load_post, except: [:index, :new]
   before_action :correct_post, only: [:edit, :update, :destroy]
+  before_action :check_login, except: :index
 
   def index; end
 

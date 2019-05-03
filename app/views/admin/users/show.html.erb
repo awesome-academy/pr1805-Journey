@@ -13,7 +13,7 @@
     </tr>
       <tr>
         <td><%= @user.id %></td>
-        <td><%= image_tag @user.picture.url if @user.picture? %></td>
+        <td><%= image_tag @user.picture.presence || "default_avatar.png" %></td>
         <td><%= @user.name %></td>
         <td><%= @user.email  %></td>
         <td><%= @user.phone %></td>
@@ -30,6 +30,8 @@
                 class: "btn btn-warning", method: :patch,
                 data: {confirm: "Are you sure ?"} %></td>
             <% end %>
+            <td><%= link_to "Back", admin_users_path,
+              class: "btn btn-primary" %></td>
         </td>
       </tr>
     </table>

@@ -15,4 +15,14 @@ class Post < ApplicationRecord
   scope :search_content, ->(search_content){where("content like '%#{search_content}%'")}
   scope :search_title, -> (title) {where(" title LIKE '%#{title}%'")}
   scope :search_place, -> (place_id) {where(place_id: place_id)}
+  scope :group_by_type, -> (type) {
+    case type
+    when type = "week"
+      group("DATE_FORMAT(created_at,'%v-%x')").count
+    when type = "month"
+      group("DATE_FORMAT(created_at,'%b-%x')").count
+    when type = "year"
+      group("DATE_FORMAT(created_at,'%x')").count
+    end
+  }
 end

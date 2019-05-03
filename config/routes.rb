@@ -47,5 +47,6 @@ Rails.application.routes.draw do
     resources :reports
 
     get "/charts", to: "charts#index"
+    resources :charts, only: :index
   end
 end
