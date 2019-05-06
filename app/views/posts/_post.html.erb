@@ -14,7 +14,7 @@
       <em>
         <p>Comment: <%= post.comments.size  %></p>
         User Rating: <%=  post.rates.size %>
-        <div class="star-rating" data-score= <%= @avg_rate %> ></div>
+        <div class="star-rating" data-score= <%= post.rate %> ></div>
       </em>
     </span>
   </div>
