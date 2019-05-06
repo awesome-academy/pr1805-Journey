@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190428104929) do
+ActiveRecord::Schema.define(version: 20190506113542) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.text "content"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20190428104929) do
     t.integer "report_id"
     t.integer "post_id"
     t.integer "comment_id"
+    t.integer "url"
   end
 
   create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20190428104929) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status"
+    t.string "picture"
     t.index ["place_id"], name: "index_posts_on_place_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end

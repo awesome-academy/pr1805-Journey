@@ -1,15 +1,18 @@
 class Post < ApplicationRecord
-  has_many :rates, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  before_save {self.title = title.upcase}
   belongs_to :user
   belongs_to :place
+  has_many :rates, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :notifications, class_name: Notification.name, foreign_key: :post_id, dependent: :destroy
-  scope :newest , -> {order  created_at: :desc}
+
   validates :title, presence: true, length: {maximum: 100}
   validates :content, presence: true
   validates :place,  presence: true
   enum status: [:active, :archived]
-  before_save {self.title = title.upcase}
+  mount_uploader :picture, AvatarUploader
+
+  scope :newest , -> {order  created_at: :desc}
   scope :search_title, ->(search_title){where("title like '%#{search_title}%'")}
   scope :search_place, ->(search_place){joins("inner join places on places.id = place_id and places.name like '%#{search_place}%'")}
   scope :search_content, ->(search_content){where("content like '%#{search_content}%'")}

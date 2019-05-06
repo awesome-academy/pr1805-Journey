@@ -1,16 +1,21 @@
-<div class="single-articles-area d-flex flex-wrap mb-30">
-  <%= link_to post.user.name, user_path(post.user.id), class: "post-title" %>
-  <div class="article-content">
-    <%= link_to post.title, post, class: "post-title" %>
-    <div class="post-meta, overflow">
-      <p class = "post-date">Posted <%= time_ago_in_words post.created_at %> ago. /
-      <p><%= link_to "Comments: ", post, class: "post-comments" %><%= post.comments.size  %></p>
-      <% if current_user? post.user  %>
-        <%= link_to "Edit", edit_post_path(post) %>
-        <%= link_to "Delete", post, method: :delete, data: {confirm: "Are you sure?"}%>
-      <% end %>
-      <p><%= post.content.html_safe %></p>
-    </div>
-    <%= link_to "Read more", "#", class: "btn egames-btn mt-50" %>
+<div class="single-widget-area video-widget">
+  <div class="single-video-widget d-flex">
+    <%= image_tag post.picture if post.picture? %>
+    <span>
+        <%= link_to post.user.name, user_path(post.user.id)%>
+        Posted <%= time_ago_in_words post.created_at %> ago.
+        <hr>
+        <%= link_to post.title, post %><br>
+        <% if current_user? post.user  %>
+          <%= link_to "Edit", edit_post_path(post) %>
+          <%= link_to "Delete", post, method: :delete, data: {confirm: "Are you sure?"}%>
+        <% end %>
+        <hr>
+      <em>
+        <p>Comment: <%= post.comments.size  %></p>
+        User Rating: <%=  post.rates.size %>
+        <div class="star-rating" data-score= <%= @avg_rate %> ></div>
+      </em>
+    </span>
   </div>
 </div>
