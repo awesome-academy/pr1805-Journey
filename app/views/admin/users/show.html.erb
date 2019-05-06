@@ -21,17 +21,22 @@
         <td><%= @user.bio %></td>
         <td><%= @user.activated_at %></td>
         <td>
-          <% if @user.blocked_at? %>
-            <td><%= button_to "Unblock", admin_user_path(@user),
-                class: "btn btn-warning", method: :patch,
-                data: {confirm: "Are you sure ?"} %></td>
-            <% else %>
-              <td><%= button_to "Block", admin_user_path(@user),
-                class: "btn btn-warning", method: :patch,
-                data: {confirm: "Are you sure ?"} %></td>
-            <% end %>
+          <% if current_admin? @user %>
             <td><%= link_to "Back", admin_users_path,
               class: "btn btn-primary" %></td>
+          <% else %>
+            <% if @user.blocked_at? %>
+              <td><%= button_to "Unblock", admin_user_path(@user),
+                  class: "btn btn-warning", method: :patch,
+                  data: {confirm: "Are you sure ?"} %></td>
+              <% else %>
+                <td><%= button_to "Block", admin_user_path(@user),
+                  class: "btn btn-warning", method: :patch,
+                  data: {confirm: "Are you sure ?"} %></td>
+              <% end %>
+              <td><%= link_to "Back", admin_users_path,
+                class: "btn btn-primary" %></td>
+          <% end %>
         </td>
       </tr>
     </table>

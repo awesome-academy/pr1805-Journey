@@ -1,0 +1,11 @@
+<% if user.is_admin? %>
+  <%= button_to "Cancel Admin", admin_user_path(user), remote: true,
+    method: :patch, data: {confirm: "Bỏ #{user.email} quyền Admin ?"},
+    class: "ml-1 float-right btn btn-primary btn_width",
+    params: { function: "assign" } %>
+<% else %>
+  <%= button_to "Asign Admin", admin_user_path(user), remote: true,
+    data: { confirm: "Chuyển #{user.email} thành quyền Admin ?" }, method: :patch,
+    class: "ml-1 float-right btn btn-primary btn_width",
+    params: { function: "assign" } %>
+<% end %>

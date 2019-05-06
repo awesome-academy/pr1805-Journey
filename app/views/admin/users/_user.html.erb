@@ -6,23 +6,50 @@
   <% if user.is_admin %>
     <td><i class="fa fa-user-plus" aria-hidden="true"></i></td>
   <% else %>
-    <td><i class="fa fa-user-circle" aria-hidden="true"></i></td>
+    <td><i class="fa fa-user" aria-hidden="true"></i></td>
   <% end %>
   <td><%= user.activated_at %></td>
   <td><%= button_to "Show", admin_user_path(user),
     class: "btn btn-info", method: :get %></td>
-  <% if user.blocked_at? %>
-    <td><%= button_to "Unblock", admin_user_path(user),
-        class: "btn btn-warning", method: :patch,
-        data: {confirm: "Are you sure ?"} %></td>
+  <% if current_admin? user %>
+    <% if user.blocked_at? %>
+      <td><%= button_to "Unblock", admin_user_path(user),
+      class: "btn btn-warning", disabled: true, method: :patch,
+      data: {confirm: "Are you sure ?"}, params: { function: "block" } %></td>
+    <% else %>
+      <td><%= button_to "Block", admin_user_path(user),
+        class: "btn btn-warning",disabled: true ,method: :patch,
+        data: {confirm: "Are you sure ?"}, params: { function: "block" } %></td>
+    <% end %>
+    <td>
+      <%= button_to "Delete", admin_user_path(user),
+        class: "btn btn-danger", disabled: true, method: :delete,
+        data: {confirm: "Are you sure ?"} %>
+    </td>
+    <td>
+      <div id="admin_button_<%= user.id %>" class="d-inline">
+        <%= render "admin/users/admin", user: user %>
+      </div>
+    </td>
   <% else %>
+    <% if user.blocked_at? %>
+      <td><%= button_to "Unblock", admin_user_path(user),
+        class: "btn btn-warning", method: :patch,
+        data: {confirm: "Are you sure ?"}, params: { function: "block" } %></td>
+    <% else %>
       <td><%= button_to "Block", admin_user_path(user),
         class: "btn btn-warning", method: :patch,
-        data: {confirm: "Are you sure ?"} %></td>
+        data: {confirm: "Are you sure ?"}, params: { function: "block" } %></td>
+    <% end %>
+    <td>
+      <%= button_to "Delete", admin_user_path(user),
+        class: "btn btn-danger", method: :delete,
+        data: {confirm: "Are you sure ?"} %>
+    </td>
+    <td>
+      <div id="admin_button_<%= user.id %>" class="d-inline">
+        <%= render "admin/users/admin", user: user %>
+      </div>
+    </td>
   <% end %>
-  <td>
-    <%= button_to "Delete", admin_user_path(user),
-      class: "btn btn-danger", method: :delete,
-      data: {confirm: "Are you sure ?"} %>
-  </td>
 </tr>

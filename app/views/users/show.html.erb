@@ -25,22 +25,28 @@
           <h2><strong id="followers"><%= @user.following.size %></strong></h2>
           <p><small><%= link_to "Following" ,following_user_path %></small></p>
           <% if current_user == @user %>
-          <button class="btn btn-info btn-block"><span class="fa fa-user"></span><%= link_to "Edit Profile", edit_user_path  %></button>
+            <%= link_to edit_user_path, class: "btn btn-info btn-block"  do %>
+              <i class="fa fa-user"></i>
+              Edit Profile
+            <% end %>
           <% end %>
         </div>
         <div class="col-12 col-md-4 float-left emphasis">
           <h2><strong><%= @user.posts.size %></strong></h2>
           <p><small>Posts</small></p>
           <div class="btn-group dropup btn-block">
-            <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options</button>
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> <span class="caret"></span>
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
+            <%= link_to "#", class: "btn btn-primary" do %>
+              <i class="fa fa-gear"></i>
+              Options
+            <% end %>
+            <%= link_to "#" ,class: "btn btn-primary dropdown-toggle", data:
+              { toggle: "dropdown" } do %>
+              <i class="sr-only"></i>
+              <% end %>
             <ul class="dropdown-menu text-left" role="menu">
               <li class="dropdown-item">
                 <%= link_to "Report", new_user_report_path(@user), class: "btn btn-info btn-lg", data: {toggle: "modal", target: "#myModal"}%>
               </li>
-              <li class="divider dropdown-item"></li>
             </ul>
           </div>
         </div>
