@@ -6,9 +6,6 @@ class UsersController <  ApplicationController
   def index
     @users = User.activated.paginate page: params[:page], per_page: 5
     @results = User.search_user params[:keyword]
-    if params[:find].blank?
-      flash[:warning] = "User Invalid!"
-    end
     return if @results.present?
     flash[:warning] = "User Invalid"
     redirect_to users_path

@@ -1,35 +1,38 @@
 <h3><strong>Users</strong></h3>
-  <%= form_tag admin_users_path, method: :get do %>
-    <%= text_field_tag :search_name, params[:search_name], class: "form-control",
-      placeholder: "Search for name...", aria: {label: "Search", describedby: "basic-addon2"}%><br>
-    <%= text_field_tag :search_email, params[:search_email], class: "form-control",
-      placeholder: "Search for email...", aria: {label: "Search", describedby: "basic-addon2"}%><br>
+<%= form_tag admin_users_path, method: :get do %>
+  <div class="input-group">
+    <%= text_field_tag :keyword, params[:keyword], placeholder:
+      "Enter Email Or Name", class: "form-control" %>
     <div class="input-group-append">
-        <%= submit_tag "Search", class: "btn btn-primary"  %>
-    </div><br>
-  <% end %>
-    <div>
-      <div><h6>Updated At: <%= Time.zone.now.strftime("%T-%d/%m/%Y") %></h6></div>
-      <%= will_paginate @users %>
-      <table class="table table-dark">
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Is_Admin</th>
-          <th>Activated_At</th>
-          <th>Show</th>
-          <th>Block</th>
-          <th>Delete</th>
-          <th>Be Admin</th>
-        </tr>
-        <% if params[:search_name] || params[:search_email] %>
-          <%= render @search_users %>
-          <% else %>
-        <%= render @users %>
-        <% end %>
-        </table>
-  </div>
+      <%= button_tag "", class:  "btn btn-primary" do %>
+        <i class="fa fa-search"></i>
+      <% end %>
+    </div>
+    <br>
+<% end %>
+<br>
+<div>
+  <div><h6>Updated At: <%= Time.zone.now.strftime("%T-%d/%m/%Y") %></h6></div>
+  <%= will_paginate @users %>
+  <table class="table table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Is_Admin</th>
+      <th>Activated_At</th>
+      <th>Show</th>
+      <th>Block</th>
+      <th>Delete</th>
+      <th>Be Admin</th>
+    </tr>
+    <% if params[:keyword] %>
+      <%= render @results %>
+      <%= link_to "Back", users_path, class: "btn btn-primary" %>
+    <% else %>
+      <%= render @users %>
+    <% end %>
+  </table>
 </div>
 

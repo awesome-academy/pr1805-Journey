@@ -4,9 +4,11 @@
       <%= f.text_area :content, placeholder: "Comment...",
         class: "form_control" %>
       <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.submit "Comment", class: "btn btn-primary" %>
-      <%= f.submit "Cancel", class: "btn btn-primary",
-        type: :reset %>
+      <div class = "form-group">
+        <%= f.submit "Comment", class: "btn btn-primary" %>
+        <%= f.submit "Cancel", class: "btn btn-primary",
+          type: :reset %>
+      </div>
     <% end %>
   <% end %>
 </div>
