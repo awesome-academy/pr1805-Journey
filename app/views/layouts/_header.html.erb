@@ -14,12 +14,10 @@
           <%= link_to "About", about_path %>
         </li>
         <% if logged_in? %>
-          <li class="dropdown" id = "noti_Button">
+          <li  id = "noti_Button">
             <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" >
               <em class="fa fa-bell" ></em>
-              <span class="label label-danger" id = "noti_Counter" >
-                <%= @new_notifications_count.count %>
-              </span>
+              <%=  render "notifications/notification_count", new_notifications_count: @new_notifications_count %>
             </a>
             <ul class="dropdown-menu " >
               <li id = "notifications">

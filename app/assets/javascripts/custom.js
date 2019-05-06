@@ -1,18 +1,16 @@
 $(document).on('turbolinks:load',function () {
-  $('#noti_Counter')
+  $('#noti_counter')
     .css({ opacity: 0 })
-    .text($('#noti_count').val())
+    .text($('#noti_counter').val())
     .css({ top: '-10px' })
     .animate({ top: '-2px', opacity: 1 }, 500);
   $('#noti_Button').click(function () {
     $('#noti_Button').css('background-color', '#FFF');
     });
-    $('#noti_Counter').fadeOut('slow');
+    $('#noti_counter').fadeOut('slow');
   });
   $(document).click(function () {
-    $('#notifications').hide();
-    if ($('#noti_Counter').is(':hidden')) {
+    if ($('#noti_counter').is(':hidden')) {
       $('#noti_Button').css('background-color', '#2E467C');
     }
-  });
 });

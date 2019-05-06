@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :password_resets, except: [:index, :destroy]
   resources :notifications, only: [:index, :destroy]
   resources :searches, only: :index
+  mount ActionCable.server, at: "/cable"
 
   namespace :admin do
     root "dashboards#index"

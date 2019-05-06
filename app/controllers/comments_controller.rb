@@ -19,9 +19,9 @@ class CommentsController < ApplicationController
     @comment = @post.comments.build comment_params
     if current_user? @user
       @comment.save
-      Notification.create!(send_from_id: current_user.id, send_to_id: @post.user.id,
-          send_from_type: "Commented", send_to_type: "Post",
-          report_id: "", post_id: @post.id, comment_id: @comment.id)
+      Notification.create(send_from_id: current_user.id, send_to_id: @post.user.id,
+        send_from_type: "Commented", send_to_type: "Post",
+        report_id: "", post_id: @post.id, comment_id: @comment.id)
       flash[:success] = "Create Comment Success"
       redirect_to @post
     else
