@@ -3,6 +3,7 @@ class NotificationsController < ApplicationController
     if logged_in?
       @notifications = Notification.admin_check_send_from_type.check_send_to(current_user.id).check_send_from(current_user.id).newest.paginate page: params[:page], per_page: 10
     end
+    Notification.update opened_at: Time.current
   end
   def destroy
     load_notification

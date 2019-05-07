@@ -1,21 +1,22 @@
-<div class="single-widget-area video-widget">
-  <div class="single-video-widget d-flex">
-    <%= image_tag post.picture if post.picture? %>
-    <span>
-        <%= link_to post.user.name, user_path(post.user.id)%>
-        Posted <%= time_ago_in_words post.created_at %> ago.
-        <hr>
-        <%= link_to post.title, post %><br>
-        <% if current_user? post.user  %>
-          <%= link_to "Edit", edit_post_path(post) %>
-          <%= link_to "Delete", post, method: :delete, data: {confirm: "Are you sure?"}%>
-        <% end %>
-        <hr>
-      <em>
-        <p>Comment: <%= post.comments.size  %></p>
-        User Rating: <%=  post.rates.size %>
-        <div class="star-rating" data-score= <%= post.rate %> ></div>
-      </em>
-    </span>
+<div class="single-articles-area style-2 d-flex flex-wrap mb-30 wow fadeInUp" data-wow-delay="300ms">
+  <div class="article-thumbnail">
+      <%= image_tag post.picture if post.picture?%>
+  </div>
+  <div class="article-content">
+    <h1><%= link_to post.title, post %></h1>
+    <div class="post-meta">
+        <a href="#" class="post-date">Posted <%= time_ago_in_words post.created_at %> ago.</a>
+        <%= link_to "Comments: ", post, class: "post-comments" %><%= post.comments.size  %>
+    </div>
+    <em>User Rating: <%= post.rates.size %></em>
+    <div class="star-rating" data-score= <%= post.rate %> ></div>
+    <br>
+    <hr>
+    <div class="post-meta">
+      <% if current_user? post.user  %>
+        <%= link_to "Edit", edit_post_path(post) %>
+        <%= link_to "Delete", post, method: :delete, data: {confirm: "Are you sure?"}%>
+      <% end %>
+    </div>
   </div>
 </div>

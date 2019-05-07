@@ -1,0 +1,32 @@
+<div class="col-12 col-sm-9 col-md-12 col-lg-12">
+  <h4 class="widget-title"><%= link_to "Rate Post", new_post_rate_path(@post) %></h4>
+  <% if @rate_user.include? current_user.id %>
+    <p><strong>You're Rate This Post !</strong></p>
+  <% else %>
+    <%= link_to "Rate Me", new_post_rate_path(@post),
+      class: "btn btn-danger" %>
+  <% end %>
+  <div class="star-rating" data-score= <%= @avg_rate %> ></div>
+  <em>User Rating: <%=  @post.rates.size %></em>
+  <div class="col-md-12">
+    <% @post.rates.each do |rate| %>
+      <div class="rating-icon" style="border: 1px solid black;">
+        <div class="star-rating" data-score= <%= rate.star %> ></div>
+        <p><strong>Review: <%= rate.review %></strong></p>
+        <p><strong>Reviewer: <%= link_to "#{rate.user.name}",
+          rate.user %></strong></p>
+        <p>
+          <strong>
+            At: <%= rate.updated_at.strftime "%T-%d/%m/%Y" %>
+          </strong>
+        </p>
+        <% if current_user? rate.user %>
+          <%= link_to "Edit Rate", edit_post_rate_path(@post, rate),
+            class: "btn btn-info" %>
+          <%= link_to "Delete Rate", post_rate_path(@post, rate),
+            class: "btn btn-danger",  method: :delete, data:
+            { confirm: "Are you sure?" } %>
+        <% end  %>
+      </div>
+   <% end %>
+</div>

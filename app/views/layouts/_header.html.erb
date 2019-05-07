@@ -15,14 +15,12 @@
         </li>
         <% if logged_in? %>
           <li  id = "noti_Button">
-            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" >
-              <em class="fa fa-bell" ></em>
-              <%=  render "notifications/notification_count", new_notifications_count: @new_notifications_count %>
-            </a>
-            <ul class="dropdown-menu " >
-              <li id = "notifications">
+            <em class="fa fa-bell" ></em>
+            <%=  render "notifications/notification_count", new_notifications_count: @new_notifications_count %>
+            <ul class="dropdown-menu" >
+              <div id="notifications" class="dropdown-messages-box">
                 <%= render @notifications_limits %>
-              </li>
+              </div>
               <li class="divider"></li>
               <li><%= link_to "See All", notifications_path %></li>
             </ul>
