@@ -1,7 +1,7 @@
-<div class="profile-userpic">
-  <%= image_tag notification.send_from.picture, class: "pull-left" %>
+<div class="blog-thumbnail">
+  <%= image_tag notification.send_from.picture, class: "pull- left" %>
 </div>
-<div class="message-body">
+<div>
   <small class="pull-right"><%= time_ago_in_words(notification.created_at)%></small>
   <strong>
     <%= link_to notification.send_from.name, admin_user_path(notification.send_from_id) %>
