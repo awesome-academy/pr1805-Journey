@@ -6,6 +6,7 @@ class CreateNotifications < ActiveRecord::Migration[5.1]
       t.integer :send_to_id
       t.integer :send_from_id
       t.integer :url
+      t.datetime :opened_at
 
       t.timestamps
     end
