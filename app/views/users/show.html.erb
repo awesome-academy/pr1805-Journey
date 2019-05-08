@@ -5,14 +5,12 @@
         <div class="col-12 col-md-8 float-left">
           <h2><%= @user.name %></h2>
           <%= image_tag @user.picture.presence || "default_avatar.png" %>
+          <br>
           <strong>Bio:</strong><quote><%= @user.bio %></quote>
+          <br>
           <strong>Email:</strong><%= @user.email %>
+          <br>
           <strong>Contact: (+84) </strong><%= @user.phone %>
-        </div>
-        <div class="col-12 col-md-4 float-left text-center">
-          <figure>
-            <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="rounded-circle img-fluid">
-          </figure>
         </div>
       </div>
       <div class="col-12 divider text-center">

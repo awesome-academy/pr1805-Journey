@@ -15,19 +15,19 @@
 #                password:              "12345678",
 #                password_confirmation: "12345678",
 #                activated: true,
-#                activated_at: Time.zone.now)
+#                activated_at: rand(2.years).seconds.ago)
 # end
 
- # 10.times do |n|
- # users = User.all
- # user  = users.first
- # following = users[2..50]
- # followers = users[3..40]
- # following.each { |followed| user.follow(followed) }
- # followers.each { |follower| follower.follow(user) }
-#end
+#  10.times do |n|
+#  users = User.all
+#  user  = users.first
+#  following = users[2..50]
+#  followers = users[3..40]
+#  following.each { |followed| user.follow(followed) }
+#  followers.each { |follower| follower.follow(user) }
+# end
 
-# 10.times do |n|
+# 50.times do |n|
 #   name = Faker::Address.city
 #   Place.create!( name: name)
 # end
