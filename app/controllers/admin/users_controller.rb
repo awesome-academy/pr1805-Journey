@@ -47,6 +47,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def destroy
+    return if @user.is_admin
     @user.destroy
     flash[:success] = "success!"
     redirect_to admin_users_path
