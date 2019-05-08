@@ -1,10 +1,11 @@
 class Admin::UsersController < Admin::BaseController
   before_action :load_user, except: [:index]
   def index
-    @search_users = User.search_name_email(params[:search_name], params[:search_email]).
-      newest.paginate page: params[:page], per_page: 6 if params[:search_name] ||
-      params[:search_email]
-    @users = User.activated.paginate page: params[:page], per_page: 5
+    @users = User.activated.paginate page: params[:page], per_page: 4
+    @results = User.search_user params[:keyword]
+    return if @results.present?
+    flash[:warning] = "User Invalid"
+    redirect_to users_path
   end
 
   def show
@@ -32,13 +33,13 @@ class Admin::UsersController < Admin::BaseController
       if @user.is_admin?
         @user.update_attribute :is_admin, false
         respond_to do |format|
-          format.html{ redirect_to @user}
+          format.html{ redirect_to admin_users_path(@user) }
           format.js
         end
       else
         @user.update_attribute :is_admin, true
         respond_to do |format|
-          format.html{ redirect_to @user}
+          format.html{ redirect_to admin_users_path(@user) }
           format.js
         end
       end
