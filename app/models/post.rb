@@ -28,6 +28,7 @@ class Post < ApplicationRecord
       group("DATE_FORMAT(created_at,'%x')").count
     end
   }
+
   def rate
     rates.average(:star)&.round(2) || 0
   end

@@ -3,11 +3,11 @@
   <td><%= user.name %></td>
   <td><%= user.email  %></td>
   <td><%= user.phone %></td>
-  <% if user.is_admin %>
-    <td><i class="fa fa-user-plus" aria-hidden="true"></i></td>
-  <% else %>
-    <td><i class="fa fa-user" aria-hidden="true"></i></td>
-  <% end %>
+  <%# if user.is_admin %>
+    <!-- <td><i class="fa fa-user-plus" aria-hidden="true"></i></td> -->
+  <%# else %>
+    <td><%= user.is_admin %></td>
+  <%# end %>
   <td><%= user.activated_at %></td>
   <td><%= button_to "Show", admin_user_path(user),
     class: "btn btn-info", method: :get %></td>

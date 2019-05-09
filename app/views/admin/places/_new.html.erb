@@ -12,8 +12,15 @@
             <%= f.label :name %>
             <%= f.text_field :name, placeholder: "Name..." , class: "form_control" %>
           </div>
-          <%= f.hidden_field :status, value: :archived %>
-          <%= f.submit "Create", class: "btn btn-primary" %>
+          <span class="picture">
+            <%= f.file_field :image,
+              accept: "image/jpeg,image/gif,image/png" %>
+          </span>
+          <br>
+          <div class="form-group">
+            <%= f.hidden_field :status, value: :archived %>
+            <%= f.submit "Create", class: "btn btn-primary" %>
+          </div>
           <% end %>
       </div>
       <div class="modal-footer">

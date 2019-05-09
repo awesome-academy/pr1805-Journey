@@ -2,6 +2,7 @@
   <td><%= place.id %></td>
   <td><%= place.name%></td>
   <td></td>
+  <td><%= image_tag "lt-03", class: "img-fluid-1" %></td>
   <td>
     <%= link_to "Edit", edit_admin_place_path(place), class: "btn btn-warning" %>
     <% if place.status == "archived" %>

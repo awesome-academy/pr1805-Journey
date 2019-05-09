@@ -1,13 +1,19 @@
 <div class="col-12 col-sm-9 col-md-12 col-lg-12">
-  <h4 class="widget-title"><%= link_to "Rate Post", new_post_rate_path(@post) %></h4>
-  <% if @rate_user.include? current_user.id %>
-    <p><strong>You're Rate This Post !</strong></p>
-  <% else %>
-    <%= link_to "Rate Me", new_post_rate_path(@post),
-      class: "btn btn-danger" %>
-  <% end %>
-  <div class="star-rating" data-score= <%= @avg_rate %> ></div>
-  <em>User Rating: <%=  @post.rates.size %></em>
+  <h4 class="widget-title mt-5">
+    <div class="star-rating" data-score= <%= @avg_rate %> ></div>
+    <i><small>All Users Rating: <%=  @post.rates.size %></small></i>
+    <div class="form-group">
+      <% if @rate_user.include? current_user.id %>
+        <p><span style="color: white; background-color: red">You Have Rated Post !</span></p>
+      <% else %>
+        <%= link_to "Rate Me", new_post_rate_path(@post),
+          class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </h4>
+  <br>
+  <br>
+  <br>
   <div class="col-md-12">
     <% @post.rates.each do |rate| %>
       <div class="rating-icon" style="border: 1px solid black;">

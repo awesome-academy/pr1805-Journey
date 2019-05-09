@@ -6,6 +6,7 @@ class UsersController <  ApplicationController
   def index
     @users = User.activated.paginate page: params[:page], per_page: 5
     @results = User.search_user params[:keyword]
+    return if params[:find].blank?
     return if @results.present?
     flash[:warning] = "User Invalid"
     redirect_to users_path
@@ -47,12 +48,12 @@ class UsersController <  ApplicationController
   end
 
   def following
-    @users = @user.following
+    @users = @user.following.paginate page: params[:page], per_page: 5
     render :show_follow
   end
 
   def followers
-    @users = @user.followers
+    @users = @user.followers.paginate page: params[:page], per_page: 5
     render :show_follow
   end
 

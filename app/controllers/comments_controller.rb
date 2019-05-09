@@ -5,8 +5,7 @@ class CommentsController < ApplicationController
   before_action :get_user, only: [:create, :update]
 
   def index
-    @comments = params[:post_id] ? (Post.find_by(id: params[:id]).include :posts)
-     : (Comment.paginate page: params[:page], per_page: 5)
+    @comments = params[:post_id] ? (Post.find_by(id: params[:id]).include :posts) : (Comment.paginate page: params[:page], per_page: 5)
   end
 
   def new
@@ -18,14 +17,18 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.build comment_params
     if current_user? @user
-      @comment.save
-      Notification.create(send_from_id: current_user.id, send_to_id: @post.user.id,
-        send_from_type: "Commented", send_to_type: "Post",
-        report_id: "", post_id: @post.id, comment_id: @comment.id)
-      flash[:success] = "Create Comment Success"
-      redirect_to @post
+      if @comment.save
+        Notification.create(send_from_id: current_user.id, send_to_id: @post.user.id,
+          send_from_type: "Commented", send_to_type: "Post",
+          report_id: "", post_id: @post.id, comment_id: @comment.id)
+        flash[:success] = "Comment Success"
+        redirect_to @post
+      else
+        flash[:warning] = "Comment Fail"
+        redirect_to @post
+      end
     else
-      flash[:warning] = "Create Comment Fail"
+      flash[:warning] = "Comment Fail"
       redirect_to @post
     end
   end
