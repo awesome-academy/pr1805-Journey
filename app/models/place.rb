@@ -3,6 +3,7 @@ class Place < ApplicationRecord
   validates :name , presence: true, uniqueness: true
   enum status: [ :active, :archived ]
   scope :newest, ->{order created_at: :desc}
+  scope :check_status, ->{where status: :archived}
   scope :search_place, ->(search_place){where("name like '%#{search_place}%'")}
   scope :group_by_type, -> (type) {
     case type

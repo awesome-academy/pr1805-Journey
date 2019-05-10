@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
   end
 
   def place_options
-    @place_options = Place.pluck(:name, :id)
+    @place_options = Place.check_status.pluck(:name, :id)
   end
 end
