@@ -33,7 +33,6 @@ module Admin::SessionsHelper
 
   def admin_check_log_out
     return if !logged_in?
-    flash[:warning] = "You should Log Out do this"
     redirect_to admin_root_url
   end
 
