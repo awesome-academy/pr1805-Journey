@@ -33,12 +33,12 @@
             </div>
             <div class="mr-5"><%= Post.all.size %> Posts</div>
           </div>
-          <a class="card-footer text-white clearfix small z-1" href="#">
+          <%= link_to admin_posts_path, class: "card-footer text-white clearfix small z-1" do %>
             <span class="float-left">View Details</span>
             <span class="float-right">
               <i class="fas fa-angle-right"></i>
             </span>
-          </a>
+          <% end %>
         </div>
       </div>
       <div class="col-xl-3 col-sm-6 mb-3">
@@ -49,12 +49,12 @@
             </div>
             <div class="mr-5"><%= Place.all.size %> Places</div>
           </div>
-          <a class="card-footer text-white clearfix small z-1" href="#">
+          <%= link_to admin_places_path, class: "card-footer text-white clearfix small z-1" do %>
             <span class="float-left">View Details</span>
             <span class="float-right">
               <i class="fas fa-angle-right"></i>
             </span>
-          </a>
+          <% end %>
         </div>
       </div>
       <div class="col-xl-3 col-sm-6 mb-3">
@@ -65,12 +65,12 @@
             </div>
             <div class="mr-5">13 New Tickets!</div>
           </div>
-          <a class="card-footer text-white clearfix small z-1" href="#">
+          <%= link_to "#", class: "card-footer text-white clearfix small z-1" do %>
             <span class="float-left">View Details</span>
             <span class="float-right">
               <i class="fas fa-angle-right"></i>
             </span>
-          </a>
+          <% end %>
         </div>
       </div>
     </div>

@@ -12,7 +12,9 @@
                   <%= f.label :name %>
                   <%= f.text_field :name, placeholder: @place.name , class: "form_control" %>
                 </div>
-                <%= f.submit "Update", class: "btn btn-primary" %>
+                <div class="form-group">
+                  <%= f.submit "Update", class: "btn btn-primary" %>
+                </div>
               <% end %>
               <%= link_to "Quay lai", admin_places_path, class: "btn btn-primary" %>
             </div>

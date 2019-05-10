@@ -2,24 +2,45 @@
   <div class="col-md-12">
       <div class="col-12 col-md-8 ">
         <% @post.comments.each do |comment| %>
-          <ul>
+        <ul class="card">
+          <div class="card-body">
+            <div class="blog-thumbnail-1">
+              <%= image_tag comment.user.picture.presence || "default_avatar.png" %>
+            </div>
+             &nbsp;
              <strong><%= link_to "#{comment.user.name}", comment.user %></strong>
             <li>
-              <strong id="<%= comment.id %>" style="margin-top: 10px;">
-                <%= comment.content %></strong>
+              <span id="<%= comment.id %>" style="margin-top: 10px;">
+                <%= comment.content %></span>
             </li>
-          </ul>
-          <% if current_user? comment.user  %>
-              <%= link_to "Edit", edit_post_comment_path(@post,
-                comment) %> /
-              <%= link_to "Delete", post_comment_path(@post,
-                comment), method: :delete,
-                data: { confirm: "Are you sure?"} %>
-          <% end %>
-          <br>
-          <small>Commented <%= time_ago_in_words(comment.created_at) %> ago</small>
-        <% end %>
-      </div>
+            <br>
+            <li >
+              <% if current_user? comment.user  %>
+                <%= link_to edit_post_comment_path(@post,
+                  comment) do %>
+                  &nbsp;
+                  <small>Edit</small>
+                <% end %>
+                   /
+                <%= link_to post_comment_path(@post,
+                  comment), method: :delete,
+                  data: { confirm: "Are you sure?"} do %>
+                  <small>Delete</small>
+                <% end %>
+              <% end %>
+            </li>
+            <br>
+            <li>
+              &nbsp;
+              <small>
+                Commented <%= time_ago_in_words(comment.created_at) %> ago
+              </small>
+            </li>
+          </div>
+        </ul>
+      <% end %>
+    </div>
   </div>
 </div>
+
 

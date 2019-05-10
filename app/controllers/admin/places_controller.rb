@@ -46,6 +46,6 @@ class Admin::PlacesController < Admin::BaseController
   end
 
   def place_params
-    params.require(:place).permit :name, :status
+    params.require(:place).permit :name, :status, :image
   end
 end

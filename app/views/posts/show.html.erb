@@ -4,14 +4,18 @@
       <div class="col-12 col-lg-8" style="float: left">
         <div class="mb-100">
           <div class="login-panel panel panel-default">
-            <h1><%= @post.title %></h1>
+            <h1 class="mt-5"><%= @post.title %></h1>
+            <i><small>Post by: <%= link_to "#{@post.user.name}", @post.user %></small></i>
           </div>
-          <% if current_user? @post.user  %>
-            <%= link_to "Edit", edit_post_path(@post) %>
-            <%= link_to "Delete", @post, method: :delete, data: {confirm: "Are you sure?"}%>
-          <% else %>
-            <%= link_to "Report", new_post_report_path(@post), data: {toggle: "modal", target: "#myModal"} %>
-          <% end %>
+          <div class="form-group mt-2">
+            <% if current_user? @post.user  %>
+              <%= link_to "Edit", edit_post_path(@post) %>
+              /
+              <%= link_to "Delete", @post, method: :delete, data: {confirm: "Are you sure?"}%>
+            <% else %>
+              <%= link_to "Report", new_post_report_path(@post), data: {toggle: "modal", target: "#myModal"} %>
+            <% end %>
+          </div>
           <hr>
           <div class="content"><%= @post.content.html_safe %></div>
           <br>

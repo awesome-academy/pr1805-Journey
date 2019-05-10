@@ -2,9 +2,9 @@
   <% if logged_in? %>
     <%= form_for [post, post.comments.build] do |f| %>
       <%= f.text_area :content, placeholder: "Comment...",
-        class: "form_control" %>
+        class: "form-control" %>
       <%= f.hidden_field :user_id, value: current_user.id %>
-      <div class = "form-group">
+      <div class = "form-group mt-3">
         <%= f.submit "Comment", class: "btn btn-primary" %>
         <%= f.submit "Cancel", class: "btn btn-primary",
           type: :reset %>

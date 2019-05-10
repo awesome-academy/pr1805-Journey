@@ -1,9 +1,10 @@
-<strong>Edit Comment</strong>
+<h3 class="mt-3">Edit Comment</h3>
 <%= form_for [@post, @comment] do |f| %>
-  <%= f.text_area :content ,class: "form_control" %>
+  <%= f.text_area :content ,class: "form-control" %>
   <%= f.hidden_field :user_id, value: current_user.id %>
+  <br>
+  <div class="form-group">
   <%= f.submit "Update", class: "btn btn-primary" %>
-  <%= f.submit "Cancel", class: "btn btn-primary",
-    type: :reset %>
+  <%= link_to "Back", post_path(@post),class: "btn btn-primary" %>
+  </div>
 <% end %>
-<%= link_to "Back", post_path(@post) %>

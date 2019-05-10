@@ -9,9 +9,13 @@ class RatesController < ApplicationController
   def create
     @rate = @post.rates.build rates_params
     if current_user? @rate.user
-      @rate.save
-      flash[:success] = "Rated Post !!"
-      redirect_to @post
+      if @rate.save
+        flash[:success] = "Rated Post !!"
+        redirect_to @post
+      else
+        flash[:warning] = "Rate Fail"
+        redirect_to @post
+      end
     else
       flash[:warning] = "Rate Fail"
       render :new
