@@ -55,6 +55,9 @@ class PostsController < ApplicationController
 
   def load_post
    @post = Post.find_by id: params[:id]
+   return true if @post.status == 'archived'
+   flash[:danger] = "Post da bi block. Khong the truy cap!"
+   redirect_to root_path
   end
 
   def correct_post

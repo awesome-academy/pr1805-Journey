@@ -19,7 +19,8 @@ class Notification < ApplicationRecord
       notification: ApplicationController.renderer.render(partial: 'notifications/notification', locals: { notification: self }),
       counter: ApplicationController.renderer.render(partial: "notifications/notification_count",
         locals: {new_notifications_count: Notification.admin_check_send_from_type
-          .check_opened_at.newest })
+          .check_send_to(send_to_id).check_send_from(send_to_id)
+          .check_opened_at})
   end
 
 end

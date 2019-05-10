@@ -1,5 +1,5 @@
 <div class="profile-userpic">
-  <%= image_tag notification.send_from.picture, class: "pull-left" %>
+  <%= image_tag notification.send_from.picture.presence || "default_avatar.png", class: "pull-left" %>
 </div>
 <div class="message-body">
   <small class="pull-right"><%= time_ago_in_words(notification.created_at)%></small>

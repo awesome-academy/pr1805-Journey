@@ -13,6 +13,7 @@ class Post < ApplicationRecord
   mount_uploader :picture, AvatarUploader
 
   scope :newest , -> {order  created_at: :desc}
+  scope :check_status, ->{where status: :archived}
   scope :search_title, ->(search_title){where("title like '%#{search_title}%'")}
   scope :search_place, ->(search_place){joins("inner join places on places.id = place_id and places.name like '%#{search_place}%'")}
   scope :search_content, ->(search_content){where("content like '%#{search_content}%'")}
