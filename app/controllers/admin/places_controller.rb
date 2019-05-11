@@ -1,9 +1,9 @@
 class Admin::PlacesController < Admin::BaseController
   before_action :load_place, only: [:edit, :update, :destroy]
   def index
-    @search_places = Place.search_place(params[:search_place]).newest.paginate page: params[:page], per_page: 10 if params[:search_place]
+    @search_places = Place.search_place(params[:search_place]).newest.paginate page: params[:page], per_page: 8 if params[:search_place]
     @place = Place.new
-    @places = Place.paginate page: params[:page], per_page: 10
+    @places = Place.paginate page: params[:page], per_page: 8
   end
 
   def edit;  end
